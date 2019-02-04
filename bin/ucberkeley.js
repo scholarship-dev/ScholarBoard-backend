@@ -9,36 +9,16 @@ const app = express();
 
 nightmare
 .goto('https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-major/accounting-scholarships/%C2%A1adelante-fund-millercoors-colorado-scholarship/')
-.end()
+.evaluate(function(){
+  return document.body.innerHTML
+})
 .then(function (result) {
-  console.log(result)
+  //loading html body to cheerio
+  let $ = cheerio.load(body);
+  console.log($);
 })
 .catch(function (error) {
   console.error('Error:', error);
 });
 
-var urlWeb = "url";
-var selectCity = "#ddl_city"
-
-nightmare
-.goto(urlWeb)
-.wait(selectCity)
-.select('#ddl_city', '19')
-.wait(6000)
-.select('#ddl_theater', '12')
-.wait(1000)
-.click('#btn_enter')
-.wait('#aspnetForm')
-.evaluate(function(){
-
-    //here is where I want to return the html body
-    return document.html;
-
-
-})
-.then(function(body){
-//loading html body to cheerio
-    var $ = cheerio.load(body);
-    console.log(body);
-})
 
