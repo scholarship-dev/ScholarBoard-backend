@@ -14,8 +14,8 @@ nightmare
 })
 .then(function (result) {
   //loading html body to cheerio
-  let $ = cheerio.load(body);
-  console.log($);
+  console.log(result);
+  let $ = cheerio.load(result);
 })
 .catch(function (error) {
   console.error('Error:', error);
