@@ -1,4 +1,4 @@
-// DATA FROM SCHOLARSHIPS.COM
+// DATA SCRAPE FROM SCHOLARSHIPS.COM
 const Nightmare = require('nightmare')
 const nightmare = Nightmare({ show: true })
 const fs = require('fs');
