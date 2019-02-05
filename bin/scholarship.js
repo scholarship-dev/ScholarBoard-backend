@@ -18,6 +18,18 @@ nightmare
   // console.log(result);
   let $ = cheerio.load(result);
   let desc = $('#ulScholDetails li.scholdescrip div').text();
+  let obj = { "text": desc }
+  console.log(obj)
+
+  const storeData = (data, path) => {
+    try {
+      fs.writeFileSync(path, JSON.stringify(data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  // for object in range(1, 1000)
+  storeData(obj, "dumps/obj_1.json");
 
   // MAKE MODEL AND SAVE 
   console.log(desc);
