@@ -1,0 +1,4 @@
+1 - save raw html text into json (around 20 different paragraphs) according to the scholarship model.
+2 - unpack json into python script for cleanup (regex). 
+3 - post the "cleaned up" text as JSON so React app can make API calls to it. 
+4 - Iterate over step 2 to improve accuracy issues. 
