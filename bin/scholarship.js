@@ -44,26 +44,3 @@ nightmare
 });
 
 
-// const Nightmare = require('nightmare')
-// const nightmare = Nightmare({ show: true })
-
-// nightmare
-// .goto('https://www.google.com/')
-// .goto('https://www.google.com/')
-// .click(':nth-child(1) > .srg > :nth-child(2) > :nth-child(1) > .rc > .r > :nth-child(1) > a')
-// .click('.col2 > .noborder > a')
-// .goto('https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory')
-// .click('#ullist > :nth-child(1) > a')
-// .goto('https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major')
-// .click('#ullist > :nth-child(1) > a')
-// .goto('https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting')
-// .click(':nth-child(1) > .scholtitle > a')
-// .goto('https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/%C2%A1adelante-fund-millercoors-colorado-scholarship')
-// .end()
-// .then(function (result) {
-//   console.log(result)
-// })
-// .catch(function (error) {
-//   console.error('Error:', error);
-// });
-
