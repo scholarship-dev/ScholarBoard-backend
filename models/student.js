@@ -10,7 +10,7 @@ const StudentSchema = new Schema({
   lowIncome: { type: Boolean, required: true}, 
   grades: { 
     gpa: { type: Number, required: true},
-    weightedGpa: { type: Number, required: true },
+    weightedGpa: { type: Number, required: false },
     achievments: { type: String, required: false}
   }
 });

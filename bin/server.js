@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 
 // IMPORT MODELS
 const Scholarship = require('../models/scholarship');
-const Student = require('../models/student');
 
 // INITIALISE MONGODB AND CONNECTION
 require('./data/scholarboard-db');
