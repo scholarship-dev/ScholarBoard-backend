@@ -1,8 +1,8 @@
 {
   "name": "scholarship_api",
   "version": "1.0.0",
-  "description": "[![GitHub](https://img.shields.io/github/forks/droxey/auth-api-starterpack.svg?style=flat-square)](https://github.com/droxey/auth-api-starterpack/network) [![GitHub](https://img.shields.io/github/issues/droxey/auth-api-starterpack.svg?style=flat-square)](https://github.com/droxey/auth-api-starterpack/issues) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)",
-  "main": "api.js",
+  "description": "A scholarship API that will match students will scholarships they meet the requirements for.",
+  "main": "server.js",
   "directories": {
     "doc": "docs"
   },

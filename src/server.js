@@ -1,40 +1,40 @@
-const mongoose = require('mongoose');
-const util = require('util');
+// MIDDLEWARE IMPORTS
+require('dotenv').config();
+const express = require('express');
+const handlebars = require('express-handlebars');
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
+const cookieParser = require('cookie-parser');
 
-// config should be imported before importing any other file
-const config = require('./config/config');
+// ROUTE IMPORTS
+const indexRouter = require('./routes/index');
+const postRouter = require('./routes/post');
+const commentRouter = require('./routes/comment');
+const subredditsRouter = require('./routes/subreddit');
+const authRouter = require('./routes/auth');
 
-const app = require('./config/express');
-const debug = require('debug')('auth-api-starterpack:index');
+// SETTING DB AND MONGOOSE CONNECTION
+require('./data/reddit-db');
 
-mongoose.Promise = Promise;
+// INSTANCE OF EXPRESS
+const server = express();
 
-// connect to mongo db
-const mongoUri = config.mongo.host;
-mongoose.connect(
-  mongoUri,
-  { server: { socketOptions: { keepAlive: 1 } } }
-);
-mongoose.connection.on('error', () => {
-  throw new Error(`unable to connect to database: ${mongoUri}`);
-});
+//  REQ/RES MIDDLEWARE
+server.use(cookieParser());
+server.use(express.static('public'));
+server.use(bodyParser.urlencoded({ extended: false }));
+server.use(express.json());
+server.use(expressValidator());
 
-// print mongoose logs in dev env
-if (config.mongooseDebug) {
-  mongoose.set('debug', (collectionName, method, query, doc) => {
-    debug(`${collectionName}.${method}`, util.inspect(query, false, 20), doc);
-  });
-}
+// CUSTOM ROUTES
+server.use('/', indexRouter);
+server.use('/posts', postRouter);
+server.use('/r', subredditsRouter);
+server.use('/posts', commentRouter);
+server.use('/users', authRouter);
 
-// # TODO: Any additional config changes belong here.
+// PORT
+const port = process.env.PORT;
+server.listen(port);
 
-// module.parent check is required to support mocha watch
-// src: https://github.com/mochajs/mocha/issues/1912
-if (!module.parent) {
-  // listen on port config.port
-  app.listen(config.port, () => {
-    console.info(`server started on port ${config.port} (${config.env})`); // eslint-disable-line no-console
-  });
-}
-
-module.exports = app;
+module.exports = server;
