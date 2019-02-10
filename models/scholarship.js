@@ -6,14 +6,8 @@ const ScholarshipSchema = new Schema({
   deadline: { type: Date, required: true },
   funding: { type: Number, required: true },
   contactInfo: { type: String, required: true},
-  requirements: { 
-    ethnicity: { type: String, required: false},
-    sex: { type: String, required: false},
-    gpa: { type: Number, required: false },
-    weightedGpa: { type: Number, required: false}, 
-    achievements: { type: String, required: false}, 
-    lowIncome: { type: Boolean, required: false }
-  }
+  // ALL REQUIREMENTS WILL BE INDIVIDUALLY QUERIED FROM THE RAW TEXT
+  requirements: { type: String, required: true}
 });
 
 module.exports = mongoose.model("Scholarship", ScholarshipSchema);

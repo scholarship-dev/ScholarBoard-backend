@@ -41,14 +41,30 @@ nightmare
   //LOADING HTML 
   let $ = cheerio.load(result);
 
+  let result = {}; 
+
   // VARIBALES THAT NEED TO BE ADDED TO THE MODEL
   const scholName = $('#ulScholNameli.scholname div').text();
   const scholDeadline = $('#due-date-text').text()
   const scholFunding = $('award-info-row div').text();
-  // VARIBALE THAT WILL NEED TO BE QUIERIED
-  const scholDescription = $('#ulScholDetails li.scholdescrip div').text();
+  // SCHOLARSHIP CONTACT INFORMATION
+  const scholContact1 = $('#liAddress1Text').text(); 
+  const scholContact2= $('#liAddress2Text').text();
+  const scholContact3 = $('liCityStateZIPText').text(); 
+  const scholContact4 = $('ul:ulScholDetails nth-child(8)').text(); 
+  const scholContact = scholContact1 + scholContact2 scholContact3 + scholContact4
+  // VARIBALE THAT WILL NEED TO BE QUIERIED AFTER SAVED TO DB
+  const scholRequirements = $('#ulScholDetails li.scholdescrip div').text();
+
+  // SAVE TEXT AS PROPERTY OF RESULT OBJ
+  result.name = scholName
+  result.deadline = scholDeadline
+  result.funding = scholFunding
+  result.contact = scholContact
+  result.requirements = scholRequirements
+
   Scholarship.create(result)
-    .then((scholName) => {
+    .then((dbSchol) => {
 
     })
   
