@@ -51,7 +51,7 @@ nightmare
   const scholContact2= $('#liAddress2Text').text();
   const scholContact3 = $('liCityStateZIPText').text(); 
   const scholContact4 = $('ul:ulScholDetails nth-child(8)').text(); 
-  const scholContact = scholContact1 + scholContact2 scholContact3 + scholContact4
+  const scholContact = scholContact1 + scholContact2 + scholContact3 + scholContact4
   // VARIBALE THAT WILL NEED TO BE QUIERIED AFTER SAVED TO DB
   const scholRequirements = $('#ulScholDetails li.scholdescrip div').text();
 
@@ -64,13 +64,13 @@ nightmare
 
   Scholarship.create(result)
     .then((dbSchol) => {
-
+      console.log(dbSchol)
     })
-  
+    .catch((err) => {
+      return res.json(err)
+    })
+    res.send('Scrape complete'); 
 })
-.catch(function (error) {
-  console.error('Error:', error);
-});
 
 // START SERVER
 app.listen(PORT, function() {
