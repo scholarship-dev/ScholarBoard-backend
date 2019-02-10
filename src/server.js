@@ -1,7 +1,6 @@
 // MIDDLEWARE IMPORTS
 require('dotenv').config();
 const express = require('express');
-const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const cookieParser = require('cookie-parser');
@@ -14,7 +13,7 @@ const subredditsRouter = require('./routes/subreddit');
 const authRouter = require('./routes/auth');
 
 // SETTING DB AND MONGOOSE CONNECTION
-require('./data/reddit-db');
+require('../bin/data/scholarboard-db');
 
 // INSTANCE OF EXPRESS
 const server = express();
