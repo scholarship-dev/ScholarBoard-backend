@@ -1,8 +1,8 @@
-/* Mongoose Connection */
+// Mongoose Connection 
 const mongoose = require('mongoose');
 assert = require('assert');
 
-/* Checking or mongoose connection */
+// Checking or mongoose connection 
 const db = mongoose.connection;
 db.on('connected', () => {
   console.log('Success: connected to MongoDB');
