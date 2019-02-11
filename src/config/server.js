@@ -6,7 +6,10 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 // ROUTE IMPORTS
-const routes = require('../routes/api');
+const indexRouter = require('../routes/api/index');
+const authRouter = require('../routes/api/auth');
+const requirementRouter = require('../routes/api/requirement');
+const studentRouter = require('../routes/api/student');
 
 // SETTING DB AND MONGOOSE CONNECTION
 require('../../bin/data/scholarboard-db');
@@ -22,7 +25,10 @@ server.use(bodyParser.json());
 server.use(cors());
 
 // MOUNTING ROUTES TO API PATH
-server.use('/api', routes);
+server.use('/api', indexRouter);
+server.use('/api', authRouter);
+server.use('/api', requirementRouter);
+server.use('/api', studentRouter);
 
 // PORT
 const port = process.env.PORT;
