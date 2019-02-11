@@ -9,6 +9,7 @@ db.on('connected', () => {
 })
 
 const url = process.env.MONGODB_URI;
+console.log(url)
 mongoose.Promise = global.Promise;
 mongoose.connect(
   url,
