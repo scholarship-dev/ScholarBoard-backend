@@ -3,10 +3,14 @@
 /* eslint-disable func-names */
 
 // DATA SCRAPE FROM SCHOLARSHIPS.COM
+require('dotenv').config()
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
 const cheerio = require('cheerio');
 const fs = require('fs');
+const mongoose = require('mongoose')
+const Scholarship = require('../models/scholarship');
+require('./db/scholarboard-db');
 
 let url = 'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-major/accounting-scholarships/%C2%A1adelante-fund-millercoors-colorado-scholarship/'
 // # TODO: ASK DANI IF YOU CAN LOOP THROUGH AN ARRAY WITH .togo WITH NIGHTMARE
@@ -47,16 +51,19 @@ nightmare
       requirements: scholRequirements,
     };
 
-    // STORE AS JSON
-    const storeData = (data, path) => {
-      try {
-        fs.writeFileSync(path, JSON.stringify(data));
-      } catch (err) {
-        console.error(err)
-      }
-    };
+    const scholarship = new Scholarship(result_obj);
+    scholarship.save()
+
+    // // STORE AS JSON
+    // const storeData = (data, path) => {
+    //   try {
+    //     fs.writeFileSync(path, JSON.stringify(data));
+    //   } catch (err) {
+    //     console.error(err)
+    //   }
+    // };
     // for object in range(1, 1000)
-    storeData(result_obj, `/data/${result_obj.name}.json`);
+    // storeData(result_obj, `/data/${result_obj.name}.json`);
   })
   .catch((err) => {
     console.log(err)
