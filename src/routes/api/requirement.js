@@ -12,14 +12,12 @@ router.get('/scholarships', (req, res) => {
 });
 
 // LOOK FOR SCHOLARSHIPS THAT HAVE GPA 3.0 IN REQUIRMENTS FILED
-router.get("/scolarship/3.0", (req, res) => {
-  Scholarship.find({tags: new RegExp(req.params.value, 'REGEX')}, function(err, f){
+router.get('/scholarship/3.0', (req, res) => {
+  Scholarship.find({tags: new RegExp(req.params.value, '3.0')}, (err, f) => {
     if(err){
       console.log(err); 
     } else {
-      res.render("Images/index.ejs", {
-        playlists: f
-      }); 
+      res.json()
     }
   });
 });

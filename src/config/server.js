@@ -12,7 +12,7 @@ const requirementRouter = require('../routes/api/requirement');
 const studentRouter = require('../routes/api/student');
 
 // SETTING DB AND MONGOOSE CONNECTION
-require('../../bin/data/scholarboard-db');
+require('../../bin/db/scholarboard-db');
 
 // INSTANCE OF EXPRESS
 const server = express();

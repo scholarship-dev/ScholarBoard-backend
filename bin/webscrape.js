@@ -22,7 +22,7 @@ let url = 'https://www.scholarships.com/financial-aid/college-scholarships/schol
 nightmare
   .goto(url)
   .evaluate(() => {
-    return document.body.innerHTML
+    return document.body.innerHTML; 
   })
   .then((result) => {
     // LOADING HTML
@@ -52,19 +52,9 @@ nightmare
     };
 
     const scholarship = new Scholarship(result_obj);
-    scholarship.save()
+    scholarship.save(); 
 
-    // // STORE AS JSON
-    // const storeData = (data, path) => {
-    //   try {
-    //     fs.writeFileSync(path, JSON.stringify(data));
-    //   } catch (err) {
-    //     console.error(err)
-    //   }
-    // };
-    // for object in range(1, 1000)
-    // storeData(result_obj, `/data/${result_obj.name}.json`);
   })
   .catch((err) => {
-    console.log(err)
+    console.log(err); 
   });
