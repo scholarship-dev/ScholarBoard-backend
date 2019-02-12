@@ -5,6 +5,7 @@ const MongoClient = require('mongodb').MongoClient
 const databaseName = 'ScholarBoardData1234'
 let database
 let scholarship_collection
+let MongoURI = "mongodb://localhost:27017"
 
 
 const Student = require('../../../models/student');
@@ -16,11 +17,10 @@ const dummyStudent = {
 }
 
 
-MongoClient.connect(process.env.MONGODB_URI, function(error, connected_database){
-  //if(error) throw error
-  console.log(error);
+MongoClient.connect(MongoURI, function(error, connected_database){
+  if(error) throw error
   if(!error){
-    database = connected_database
+    database = connected_database.db(databaseName)
     scholarship_collection = database.collection('scholarships')
   }
 })
@@ -34,12 +34,13 @@ router.get('/scholarships', (req, res) => {
 
 // LOOK FOR SCHOLARSHIPS THAT HAVE GPA 3.0 IN REQUIRMENTS FILED
 router.get("/scolarship/3.0", (req, res) => {
-  console.log("holla medi");
   scholarship_collection.find().toArray(function(err, result){
-    // result.forEach(function(object){
-    //   current_req = obj.requirements
-    //   console.log(requirements);
-    // })
+    result.forEach(function(scholarship){
+      curr_req = scholarship.requirements
+      if(curr_req.includes("3.0")){
+        console.log("This scholarship has 3.0");
+      }
+    })
   })
 });
 
