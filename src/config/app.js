@@ -15,24 +15,24 @@ const studentRouter = require('../routes/api/student');
 require('../../bin/db/scholarboard-db');
 
 // INSTANCE OF EXPRESS
-const server = express();
+const app = express();
 
 // REQ/RES MIDDLEWARE (CORS - CROSS ORIGIN RESOURCE SHARING)
-server.use(cookieParser());
-server.use(bodyParser.urlencoded({ extended: true }));
-server.use(express.json());
-server.use(bodyParser.json());
-server.use(cors());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(cors());
 
 // MOUNTING ROUTES TO API PATH
-server.use('/api', indexRouter);
-server.use('/api', authRouter);
-server.use('/api', requirementRouter);
-server.use('/api', studentRouter);
+app.use('/api', indexRouter);
+app.use('/api', authRouter);
+app.use('/api', requirementRouter);
+app.use('/api', studentRouter);
 
 // PORT
 const port = process.env.PORT;
-server.listen(port);
+app.listen(port);
 
-module.exports = server;
+module.exports = app;
 
