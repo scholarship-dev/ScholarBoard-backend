@@ -31,13 +31,13 @@ nightmare
     // VARIBALES THAT NEED TO BE ADDED TO THE MODEL
     // const scholName = $('#innercontent nth-child(2)').text();
     const scholName = $('.eyebrow').next().text();
-    const scholDeadline = $('#due-date-text').text(); 
+    const scholDeadline = $('#due-date-text').text();
     const scholFunding = $('.award-info-row :nth-child(1)').text();
     // SCHOLARSHIP CONTACT INFORMATION
-    const scholContact1 = $('#liAddress1Text').text(); 
+    const scholContact1 = $('#liAddress1Text').text();
     const scholContact2 = $('#liAddress2Text').text();
-    const scholContact3 = $('#liCityStateZIPText').text(); 
-    const scholContact4 = $('#ulScholDetails li:nth-child(8)').text(); 
+    const scholContact3 = $('#liCityStateZIPText').text();
+    const scholContact4 = $('#ulScholDetails li:nth-child(8)').text();
     const scholContact = scholContact1 + scholContact2 + scholContact3 + scholContact4;
     // VARIBALE THAT WILL NEED TO BE QUIERIED AFTER SAVED TO DB
     const scholRequirements = $('#ulScholDetails li.scholdescrip div').text();
@@ -53,17 +53,6 @@ nightmare
 
     const scholarship = new Scholarship(result_obj);
     scholarship.save()
-
-    // // STORE AS JSON
-    // const storeData = (data, path) => {
-    //   try {
-    //     fs.writeFileSync(path, JSON.stringify(data));
-    //   } catch (err) {
-    //     console.error(err)
-    //   }
-    // };
-    // for object in range(1, 1000)
-    // storeData(result_obj, `/data/${result_obj.name}.json`);
   })
   .catch((err) => {
     console.log(err)
