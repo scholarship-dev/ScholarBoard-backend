@@ -4,7 +4,7 @@ This repository contains the source code of the scholarboard backend that suppor
 
 ## Engineers
 * **<a href= "https://github.com/ThomasLee94">Thomas Lee</a>** - *Back End Lead Engineer*
-* **<a href= "https://github.com/MediBoss">Asim Zaidi</a>** - *Back End Engineer*
+* **<a href= "https://github.com/MediBoss">Medi Assumani</a>** - *Back End Engineer*
 
 
 ## Technology
