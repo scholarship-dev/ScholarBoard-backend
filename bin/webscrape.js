@@ -42,6 +42,9 @@ nightmare
     // VARIBALE THAT WILL NEED TO BE QUIERIED AFTER SAVED TO DB
     const scholRequirements = $('#ulScholDetails li.scholdescrip div').text();
 
+    function extractEthnicity(body){
+
+    }
     // SAVE TEXT AS PROPERTY OF RESULT OBJ
     const result_obj = {
       name: scholName,

@@ -12,7 +12,6 @@ const studentRouter = require('../routes/api/student');
 
 // SETTING DB AND MONGOOSE CONNECTION
 require('../../bin/db/scholarboard-db');
-console.log("hello medi");
 // INSTANCE OF EXPRESS
 const server = express();
 

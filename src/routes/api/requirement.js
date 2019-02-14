@@ -11,9 +11,16 @@ let MongoURI = "mongodb://localhost:27017"
 const Student = require('../../../models/student');
 const Scholarship = require('../../../models/scholarship');
 
-const dummyStudent = {
+const current_user = {
   name: "Medi Assumani",
-  race: "Balck/African American"
+  ethnicity: "Balck/African American",
+  gpa: 3.0,
+  dob: "March 14 1999",
+  grades: {
+    gpa: 3.5,
+    weightedGpa: 4.0
+  }
+
 }
 
 
@@ -32,13 +39,17 @@ router.get('/scholarships', (req, res) => {
     .then(scholarships => res.json(scholarships));
 });
 
+
 // LOOK FOR SCHOLARSHIPS THAT HAVE GPA 3.0 IN REQUIRMENTS FILED
 router.get("/scolarship/3.0", (req, res) => {
   scholarship_collection.find().toArray(function(err, result){
     result.forEach(function(scholarship){
       curr_req = scholarship.requirements
-      if(curr_req.includes("3.0")){
-        console.log("This scholarship has 3.0");
+      console.log(current_user.grades.gpa);
+      if(curr_req.includes(`${toString(current_user.grades.gpa)}`)){
+        console.log("This scholarship has a GPA Match");
+      }else{
+        console.log("No Match");
       }
     })
   })

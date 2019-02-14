@@ -7,8 +7,8 @@ const StudentSchema = new Schema({
   ethnicity: { type: String, required: true },
   contactInfo: { type: String, required: true},
   secondaryEducation: { type: String, required: true}, 
-  lowIncome: { type: Boolean, required: true}, 
-  grades: { 
+  lowIncome: { type: Boolean, required: true},
+  grades: {
     gpa: { type: Number, required: true},
     weightedGpa: { type: Number, required: false },
     achievments: { type: String, required: false}
