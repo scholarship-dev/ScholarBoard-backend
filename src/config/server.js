@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "Jewish People", "Asian people", "Arabs", "Native Americans", "Black people", "pacific islander", "Irannian people", "Native Hawaiians", "Alaska Natives", "Latino", "Multiracial", "Hispanic and Latino Americans", "Mexicans", "Pacific Islands Americans", "Irish People"]
 
 // ROUTE IMPORTS
 const indexRouter = require('../routes/api/index');
@@ -32,6 +33,7 @@ server.get('/', (req,res) => {
   console.log("medi??")
   res.send("hi")
 })
+
 // PORT
 const port = 3000;
 server.listen(port);
