@@ -6,7 +6,7 @@ const StudentSchema = new Schema({
   dob: { type: Date, required: true },
   ethnicity: { type: String, required: true },
   contactInfo: { type: String, required: true},
-  secondaryEducation: { type: String, required: true}, 
+  secondaryEducation: { type: String, required: true},
   lowIncome: { type: Boolean, required: true},
   grades: {
     gpa: { type: Number, required: true},

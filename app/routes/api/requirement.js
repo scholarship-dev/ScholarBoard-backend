@@ -11,8 +11,8 @@ let MongoURI = 'mongodb://localhost:27017'
 const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "Jewish People", "Asian people", "Arabs", "Native Americans", "Black people", "pacific islander", "Irannian people", "Native Hawaiians", "Alaska Natives", "Latino", "Multiracial", "Hispanic and Latino Americans", "Mexicans", "Pacific Islands Americans", "Irish People"]
 const body = "The ¡Adelante! U.S. Education Leadership Fund is a leadership development, non-profit organization dedicated to Hispanic college students. Our mission is to inspire the best and brightest Latino students to graduate and lead through scholarships, internships, and leadership training. Must be a junior or senior university classification by the fall semester. Open only to Chicagoland partnering universities. Applicants must be of Hispanic descent and must be a US citizen or legal permanent resident with a GPA of 3.0 or higher on a 4.0 scale. For more information or to apply, please visit the scholarship provider's website."
 
-const Student = require('../../../models/student');
-const Scholarship = require('../../../models/scholarship');
+const Student = require('../../models/student');
+const Scholarship = require('../../models/scholarship');
 
 const current_user = {
   name: "Medi Assumani",
