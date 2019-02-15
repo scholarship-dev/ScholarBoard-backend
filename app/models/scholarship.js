@@ -7,8 +7,9 @@ const ScholarshipSchema = new Schema({
   funding: { type: String},
   contactInfo: { type: String},
   description: { type: String},
-  ethnicity: { type: String},
-  grade: { type: String},
+  ethnicity: { type: String}, // hispanic, native american, tec..
+  educationLevel: { type: String}, // high scool, college, etc...
+  grade: { type: String}, // junior, senior, ect...
   gpa: {type: Number}
 });
 
