@@ -6,8 +6,11 @@
 const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "Jewish People", "Asian people", "Arabs", "Native Americans", "Black people", "pacific islander", "Irannian people", "Native Hawaiians", "Alaska Natives", "Latino", "Multiracial", "Hispanic and Latino Americans", "Mexicans", "Pacific Islands Americans", "Irish People"]
 const grade_keywords = ["freshman", "sophomore", "junior", "senior"]
 const education_level_keywords = ["high school", "college", "undergrad", "undergraduate", "university",]
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> MA-Fix/Database-Cleanup
 /* Extracts the ethnicity requirement from the scholarship description
   @param - text_body : the string that contains the scholarship requirement
   @param - user : the user in which we are matching the ethnicity to
