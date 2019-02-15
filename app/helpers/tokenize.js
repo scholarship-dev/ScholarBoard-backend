@@ -7,7 +7,7 @@ const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "J
 
 /* Extracts the ethnicity requirement from the scholarship description
   @param - text_body : the string that contains the scholarship requirement
-  @param - user : the user in which we are matching the ethnicity to 
+  @param - user : the user in which we are matching the ethnicity to
   @return - ethnicity : the ethnicity requirement
 */
 exports.extractEthnicity = function(text_body, user){
@@ -26,7 +26,20 @@ exports.extractEthnicity = function(text_body, user){
 
       // extracts the ethnicity if a keyword is found in the requirements text
       ethnicity = stripped_text.slice(start_index, end_index)
-      console.log(ethnicity);
+      return ethnicity
+    } else{
+      console.log("Scholarship doesn't have ethnicity requirements");
+      return null
     }
+  })
+}
+
+/* Cleans up a body of text from special characters
+  @param - stringArray : An array of strings to be cleaned up
+*/
+exports.cleanTextBody = function(stringArray){
+
+  stringArray.forEach(function(string){
+    string.replace(/(\t\n|\n|\t)/gm,"")
   })
 }
