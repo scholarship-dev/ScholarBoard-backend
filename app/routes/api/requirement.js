@@ -16,7 +16,7 @@ const Scholarship = require('../../../models/scholarship');
 
 const current_user = {
   name: "Medi Assumani",
-  ethnicity: "Balck/African American",
+  ethnicity: "Hispanic",
   gpa: 3.0,
   dob: "March 14 1999",
   grades: {
@@ -44,24 +44,26 @@ router.get('/scholarships', (req, res) => {
 
 // LOOK FOR SCHOLARSHIPS THAT HAVE GPA 3.0 IN REQUIRMENTS FILED
 router.get('/scolarship/3.0', (req, res) => {
-  const str = "medi is a hispanic man"
-  const new_str = str.replace(/\s/g, "")
-  console.log(new_str);
-  const key = "hispanic"
+  const new_str = body.replace(/\s/g, "")
+  const key = current_user.ethnicity
   let target
   const start_index = new_str.indexOf(key)
   const end_index = (start_index + key.length)
-  console.log("Lenght of sentence : " + new_str.length);
-  console.log("length of key : " + key.length);
-  console.log("start index : "+ start_index);
-  console.log("End index : "+ end_index);
-  if (str.includes(key.toLowerCase()) || str.includes(key.toUpperCase())){
-    target = new_str.slice(start_index, end_index)
-    console.log("Char at start index : " + new_str.charAt(start_index));
-    console.log("Char at end index : "+ new_str.charAt(end_index));
 
-    console.log(target);
-  }
+  ethnicity_keywords.forEach(function(element){
+    if (new_str.includes(element)){
+      target = new_str.slice(start_index, end_index)
+      console.log(target);
+    }
+  })
+
+  // if (str.includes(key.toLowerCase()) || str.includes(key.toUpperCase())){
+  //   target = new_str.slice(start_index, end_index)
+  //   console.log("Char at start index : " + new_str.charAt(start_index));
+  //   console.log("Char at end index : "+ new_str.charAt(end_index));
+  //
+  //   console.log(target);
+  // }
   // scholarship_collection.find().toArray((err, result) => {
   //   result.forEach((scholarship) => {
   //     curr_req = scholarship.requirements

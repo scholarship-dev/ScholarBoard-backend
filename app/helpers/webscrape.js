@@ -21,7 +21,6 @@ let url = 'https://www.scholarships.com/financial-aid/college-scholarships/schol
 
 const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "Jewish People", "Asian people", "Arabs", "Native Americans", "Black people", "pacific islander", "Irannian people", "Native Hawaiians", "Alaska Natives", "Latino", "Multiracial", "Hispanic and Latino Americans", "Mexicans", "Pacific Islands Americans", "Irish People"]
 
-
 nightmare
   .goto(url)
   .evaluate(() => {
@@ -44,7 +43,7 @@ nightmare
     const scholContact = scholContact1 + scholContact2 + scholContact3 + scholContact4;
     // VARIBALE THAT WILL NEED TO BE QUIERIED AFTER SAVED TO DB
     const scholRequirements = $('#ulScholDetails li.scholdescrip div').text();
-    
+
     // SAVE TEXT AS PROPERTY OF RESULT OBJ
     const result_obj = {
       name: scholName,
