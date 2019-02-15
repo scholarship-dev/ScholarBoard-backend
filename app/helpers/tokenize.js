@@ -4,7 +4,8 @@
 */
 
 const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "Jewish People", "Asian people", "Arabs", "Native Americans", "Black people", "pacific islander", "Irannian people", "Native Hawaiians", "Alaska Natives", "Latino", "Multiracial", "Hispanic and Latino Americans", "Mexicans", "Pacific Islands Americans", "Irish People"]
-
+const grade_keywords = ["freshman", "sophomore", "junior", "senior"]
+const education_level_keywords = ["high school", "college", "undergrad", "undergraduate", "uni", "university", "graduate"]
 /* Extracts the ethnicity requirement from the scholarship description
   @param - text_body : the string that contains the scholarship requirement
   @param - user : the user in which we are matching the ethnicity to
@@ -42,4 +43,15 @@ exports.cleanTextBody = function(stringArray){
   stringArray.forEach(function(string){
     string.replace(/(\t\n|\n|\t)/gm,"")
   })
+}
+
+exports.extractGrade = function(text_body, user){
+
+  let grades = []
+  grade_keywords.forEach(function(element){
+    if(text_body.includes(element)){
+      grades.push(element)
+    }
+  })
+  return grades
 }
