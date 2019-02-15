@@ -43,7 +43,7 @@ router.get('/scholarships', (req, res) => {
 
 // LOOK FOR SCHOLARSHIPS THAT HAVE GPA 3.0 IN REQUIRMENTS FILED
 router.get('/test', (req, res) => {
-  tokenize.extractGrade(body, current_user)
+  tokenize.extractEducationLevel(body)
 });
 
 
