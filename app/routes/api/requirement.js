@@ -41,10 +41,10 @@ router.get('/scholarships', (req, res) => {
 });
 
 // GET ALL SCHOLARSHIPS WITH AT LEAST A GPA OF 3.5 AND WEIGHTED GPA OF 4.0
-router.get('/', (req, res) => {
-  Scholarship.find({ gpa: { $gte: 3.5 }, weightedGpa: { $gte: 4.0 }})
+router.get('/:user/:scholarships', (req, res) => {
+  Scholarship.find({ gpa: { $gte: 3.5 }, weightedGpa: { $gte: 4.0 } })
     .then(scholarships => res.json(scholarships));
-})
+}); 
 
 // USE THIS ROUTE FOR TESTING PURPOSES
 router.get('/test', (req, res) => {
