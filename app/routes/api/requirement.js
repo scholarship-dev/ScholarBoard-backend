@@ -41,14 +41,25 @@ router.get('/scholarships', (req, res) => {
     .then(scholarships => res.json(scholarships));
 });
 
-// FUZZY SEARCH TO GET ALL SCHOLARSHIPS PER ETHNICITY
+// FUZZY SEARCH TO GET ALL SCHOLARSHIPS BY ETHNICITY
 // FIND ANTHING 'LIKE' ETHNICITY
 // TESTED
 router.get('/scholarships/:ethnicity', (req, res) => {
-  const ethnicity = new RegExp(req.params.ethnicity + '/i')
+  const ethnicity = new RegExp(req.params.ethnicity) // 'i'
   console.log(ethnicity)
   Scholarship.find({ ethnicity })
     .then(scholarships => res.json(scholarships));
+});
+
+// FUZZY SEARCH TO GET ALL  SCHOLARSHIPS BY DEADLINE
+router.get('/scholarships/:deadline', (req, res) =>  {
+  const deadline = new RegExp(req.params.deadline)
+  { $dateFromString: {
+    dateString: toString(deadline),
+    timezone: 'America/New_York',
+  } }
+  console.log($dateFromString)
+  Scholarship.find({deadline: { $gte : $dateFromString }} )
 })
 
 // THIS ROUTE SHOULD BE AT THE BOTTOM AS IT HAS 2 VARIABLES
