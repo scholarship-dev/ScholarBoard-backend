@@ -46,6 +46,14 @@ router.get('/:user/:scholarships', (req, res) => {
     .then(scholarships => res.json(scholarships));
 }); 
 
+// FUZZY SEARCH TO GET ALL SCHOLARSHIPS PER ETHNICITY
+// FIND ANTHING 'LIKE' ETHNICITY
+router.get('/scholarships/:ethnicity', (req, res) => {
+  const ethnicity = new RegExp(req.params.ethnicity + '/i')
+  Scholarship.find({ ethnicity })
+    .then(scholarships => res.json(scholarships));
+})
+
 // USE THIS ROUTE FOR TESTING PURPOSES
 router.get('/test', (req, res) => {
 
