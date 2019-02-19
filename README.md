@@ -1,15 +1,24 @@
-# ScholarBoard API
+# Scholarboard Backend Server/API
 
-How we got our data:
+This repository contains the source code of the scholarboard backend that supports the web and ios client.
 
-  1 - Scrape for data using nightmare.js and cheerio.js
+## Engineers
+* **<a href= "https://github.com/ThomasLee94">Thomas Lee</a>** - *Back End Lead Engineer*
+* **<a href= "https://github.com/MediBoss">Medi Assumani</a>** - *Back End Engineer*
 
-  2 - Save raw text as JSON.
 
-  3 - Unpack raw text in a python script for Regex.
+## Technology
 
-  4 - Pack parsed text as JSON.
+* Node.JS
+* Express.JS
+* MongoDB
 
-  5 - Create post route to save scholarship requirements as defined by model (Flask - find a way that will do this automatically everytime a new JSON is created with parsed data)
 
-  6 - Create API so react app can make calls. 
+## Acknowledgement
+
+* Hat tip to anyone who's code was used
+* Replace this with something else - anyone who helped you(Link it to their github page)
+
+
+## License
+This project is licensed under the Apache License 2.0 - see the <a href="https://github.com/scholarship-dev/ScholarBoard-backend/blob/master/LICENSE">LICENSE</a> file for details
