@@ -27,6 +27,7 @@
     "mongoose": "^5.4.10",
     "morgan": "^1.9.1",
     "nightmare": "^3.0.1",
+    "nodemon": "^1.18.10",
     "puppeteer": "^1.12.1"
   },
   "devDependencies": {

@@ -21,10 +21,8 @@ const current_user = {
   grades: {
     gpa: 3.5,
     weightedGpa: 4.0
-  }
-
-}
-
+  },
+};
 
 MongoClient.connect(MongoURI, (error, connected_database) => {
   if (error) throw error;
@@ -45,22 +43,20 @@ router.get('/scholarships', (req, res) => {
 // FIND ANTHING 'LIKE' ETHNICITY
 // TESTED
 router.get('/scholarships/:ethnicity', (req, res) => {
-  const ethnicity = new RegExp(req.params.ethnicity) // 'i'
-  console.log(ethnicity)
+  const ethnicity = new RegExp(req.params.ethnicity); // '/i'
   Scholarship.find({ ethnicity })
     .then(scholarships => res.json(scholarships));
 });
 
 // FUZZY SEARCH TO GET ALL  SCHOLARSHIPS BY DEADLINE
 router.get('/scholarships/:deadline', (req, res) =>  {
-  const deadline = new RegExp(req.params.deadline)
+  const deadline = new RegExp(req.params.deadline);
+  
   { $dateFromString: {
     dateString: toString(deadline),
-    timezone: 'America/New_York',
-  } }
-  console.log($dateFromString)
-  Scholarship.find({deadline: { $gte : $dateFromString }} )
-})
+  }}
+  Scholarship.find({ deadline: deadlineString });
+}); 
 
 // THIS ROUTE SHOULD BE AT THE BOTTOM AS IT HAS 2 VARIABLES
 // COULD REGISTER ALL ROUTES WITH 2 PARAMATERS AS VARIABLE ONES

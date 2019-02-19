@@ -41,6 +41,17 @@ exports.cleanTextBody = function(stringArray){
   return clean_strings
 }
 
+/* Cleans up current date string to a consistent date object so it can be sorted. 
+  @param - stringArray : An array of strings to be cleaned up
+  @return - clean_date : Date Object
+*/
+exports.dateFormat = function(stringArray){
+  let clean_date = []
+  stringAarray.forEach(function(string){
+    let clean_string = string.replace()
+  })
+}
+
 /* Extract the grade(s) requirements from the scholarship's description
   @param - text_body : The scholarship description
   @return - grades : An array of grades requirements from the description
