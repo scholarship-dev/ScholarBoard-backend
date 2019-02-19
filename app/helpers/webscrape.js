@@ -54,12 +54,8 @@ nightmare
 
     // CREATING AND SAVING A NEW SCHOLARSHIP OBJECT
     const scholarship = new Scholarship(result_obj);
-<<<<<<< HEAD:bin/webscrape.js
-    scholarship.save(); 
-
-=======
     scholarship.save()
->>>>>>> 0bb5a10a6eca91b96bfc5af00047abccc95c9f60:app/helpers/webscrape.js
+
   })
   .catch((err) => {
     console.log(err); 

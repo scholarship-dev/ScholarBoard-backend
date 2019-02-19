@@ -2,7 +2,6 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const server = express();
 const authRouter = require('./routes/api/auth');
 const requirementRouter = require('./routes/api/requirement');
@@ -15,7 +14,6 @@ const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "J
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(bodyParser.json());
-server.use(cors());
 
 
 // MOUNTING ROUTES TO API PATH
@@ -24,10 +22,6 @@ server.use(cors());
 server.use(requirementRouter);
 // server.use('/api', studentRouter);
 
-server.get('/', (req,res) => {
-  console.log("medi??")
-  res.send("hi")
-})
 
 // PORT
 const port = 3000;
