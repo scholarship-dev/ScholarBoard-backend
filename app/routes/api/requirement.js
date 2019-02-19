@@ -51,17 +51,16 @@ router.get('/scholarships/:ethnicity', (req, res) => {
 // FUZZY SEARCH TO GET ALL  SCHOLARSHIPS BY DEADLINE
 router.get('/scholarships/:deadline', (req, res) =>  {
   const deadline = new RegExp(req.params.deadline);
-  
-  { $dateFromString: {
-    dateString: toString(deadline),
-  }}
+  // { $dateFromString: {
+  //   dateString: toString(deadline),
+  // }}
   Scholarship.find({ deadline: deadlineString });
 }); 
 
 // THIS ROUTE SHOULD BE AT THE BOTTOM AS IT HAS 2 VARIABLES
 // COULD REGISTER ALL ROUTES WITH 2 PARAMATERS AS VARIABLE ONES
 // GET ALL SCHOLARSHIPS WITH AT LEAST A GPA OF 3.5 AND WEIGHTED GPA OF 4.0
-router.get('/:user/:scholarships', (req, res) => {
+router.get('/scholarships/:user', (req, res) => {
   Scholarship.find({ gpa: { $gte: 3.5 }, weightedGpa: { $gte: 4.0 } })
     .then(scholarships => res.json(scholarships));
 }); 
