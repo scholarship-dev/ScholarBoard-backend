@@ -20,7 +20,7 @@ let url = 'https://www.scholarships.com/financial-aid/college-scholarships/schol
 nightmare
   .goto(url)
   .evaluate(() => {
-    return document.body.innerHTML;
+    return document.body.innerHTML; 
   })
   .then((result) => {
     // LOADING HTML
