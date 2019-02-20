@@ -77,22 +77,22 @@ exports.extractEducationLevel = function(text_body){
 exports.extractGPA = function(text_body){
 
   const new_str = text_body.replace(/\s/g, "")
-
-  // Fileter 1 : Check if the gpa is required at all
-  if (new_str.includes("gpa") == false || new_str.includes("GPA") == false){
-    console.log("Failed inside 1st Filter");
+  let target_gpa
+  // Fileter 1 : Checks if the gpa is required at all for this scholarship
+  if((new_str.includes('GPA') == false) && new_str.includes("gpa") == false){
+    console.log("we dont have a gpa");
     return null
   }
 
   // Fileter 2 : Check if key gpa numbers are in the requirements
   gpa_keywords.forEach(function(gpa){
-    if(new_str.includes(gpa)){
-      console.log("hi");
+
+    // We only extract the GPA and avoid the 4.0 since it's just a scale
+    if(new_str.includes(gpa) && gpa != "4.0"){
       const start_index = new_str.indexOf(gpa)
-      console.log("Starting index " + start_index);
-      const substring = new_str.substring(start_index)
-      console.log(substring);
-      return
+      const end_index = (start_index + gpa.length)
+      target_gpa = new_str.substring(start_index, end_index)
     }
   })
+  return target_gpa
 }
