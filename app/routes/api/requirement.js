@@ -46,7 +46,7 @@ router.get('/scholarships/:ethnicity', (req, res) => {
   const ethnicity = new RegExp(req.params.ethnicity); // '/i'
   Scholarship.find({ ethnicity })
     .then(scholarships => res.json(scholarships));
-});
+}); 
 
 // FUZZY SEARCH TO GET ALL  SCHOLARSHIPS BY DEADLINE
 router.get('/scholarships/:deadline', (req, res) =>  {
