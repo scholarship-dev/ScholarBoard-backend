@@ -75,10 +75,24 @@ exports.extractEducationLevel = function(text_body){
 
 
 exports.extractGPA = function(text_body){
+
   const new_str = text_body.replace(/\s/g, "")
+
+  // Fileter 1 : Check if the gpa is required at all
+  if (new_str.includes("gpa") == false || new_str.includes("GPA") == false){
+    console.log("Failed inside 1st Filter");
+    return null
+  }
+
+  // Fileter 2 : Check if key gpa numbers are in the requirements
   gpa_keywords.forEach(function(gpa){
     if(new_str.includes(gpa)){
-      console.log(gpa);
+      console.log("hi");
+      const start_index = new_str.indexOf(gpa)
+      console.log("Starting index " + start_index);
+      const substring = new_str.substring(start_index)
+      console.log(substring);
+      return
     }
   })
 }
