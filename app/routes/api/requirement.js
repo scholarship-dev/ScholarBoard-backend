@@ -4,16 +4,16 @@
 const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient
+const tokenize = require("../../helpers/tokenize")
 const databaseName = 'ScholarBoardData1234'
 let database
 let scholarship_collection
 let MongoURI = 'mongodb://localhost:27017'
-const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "Jewish People", "Asian people", "Arabs", "Native Americans", "Black people", "pacific islander", "Irannian people", "Native Hawaiians", "Alaska Natives", "Latino", "Multiracial", "Hispanic and Latino Americans", "Mexicans", "Pacific Islands Americans", "Irish People"]
-const body = "The ¡Adelante! U.S. Education Leadership Fund is a leadership development, non-profit organization dedicated to Hispanic college students. Our mission is to inspire the best and brightest Latino students to graduate and lead through scholarships, internships, and leadership training. Must be a junior or senior university classification by the fall semester. Open only to Chicagoland partnering universities. Applicants must be of Hispanic descent and must be a US citizen or legal permanent resident with a GPA of 3.0 or higher on a 4.0 scale. For more information or to apply, please visit the scholarship provider's website."
+const Student = require('../../models/student');
+const Scholarship = require('../../models/scholarship');
+const body = "The ¡Adelante! U.S. Education Leadership Fund is a leadership development, non-profit organization dedicated to Hispanic college students. Our mission is to inspire the best and brightest Latino students to graduate and lead through scholarships, internships, and leadership training. Must be a junior or senior university classification by the fall semester. Open only to Chicagoland partnering universities. Applicants must be of Hispanic descent and must be a US citizen or legal permanent resident with a GPA of 3.5 or higher on a 4.0 scale. For more information or to apply, please visit the scholarship provider's website."
 
-const Student = require('../../../models/student');
-const Scholarship = require('../../../models/scholarship');
-
+// DUMMY USER DATA
 const current_user = {
   name: "Medi Assumani",
   ethnicity: "Hispanic",
@@ -23,7 +23,6 @@ const current_user = {
     gpa: 3.5,
     weightedGpa: 4.0
   }
-
 }
 
 
@@ -36,45 +35,33 @@ MongoClient.connect(MongoURI, (error, connected_database) => {
 })
 
 // GET ALL SCHOLARSHIPS
+// TESTED
 router.get('/scholarships', (req, res) => {
   Scholarship.find()
     .then(scholarships => res.json(scholarships));
 });
 
+// FUZZY SEARCH TO GET ALL SCHOLARSHIPS PER ETHNICITY
+// FIND ANTHING 'LIKE' ETHNICITY
+// TESTED
+router.get('/scholarships/:ethnicity', (req, res) => {
+  const ethnicity = new RegExp(req.params.ethnicity + '/i')
+  console.log(ethnicity)
+  Scholarship.find({ ethnicity })
+    .then(scholarships => res.json(scholarships));
+})
 
-// LOOK FOR SCHOLARSHIPS THAT HAVE GPA 3.0 IN REQUIRMENTS FILED
-router.get('/scolarship/3.0', (req, res) => {
-  const new_str = body.replace(/\s/g, "")
-  const key = current_user.ethnicity
-  let target
-  const start_index = new_str.indexOf(key)
-  const end_index = (start_index + key.length)
+// THIS ROUTE SHOULD BE AT THE BOTTOM AS IT HAS 2 VARIABLES
+// COULD REGISTER ALL ROUTES WITH 2 PARAMATERS AS VARIABLE ONES
+// GET ALL SCHOLARSHIPS WITH AT LEAST A GPA OF 3.5 AND WEIGHTED GPA OF 4.0
+router.get('/:user/:scholarships', (req, res) => {
+  Scholarship.find({ gpa: { $gte: 3.5 }, weightedGpa: { $gte: 4.0 } })
+    .then(scholarships => res.json(scholarships));
+});
 
-  ethnicity_keywords.forEach(function(element){
-    if (new_str.includes(element)){
-      target = new_str.slice(start_index, end_index)
-      console.log(target);
-    }
-  })
-
-  // if (str.includes(key.toLowerCase()) || str.includes(key.toUpperCase())){
-  //   target = new_str.slice(start_index, end_index)
-  //   console.log("Char at start index : " + new_str.charAt(start_index));
-  //   console.log("Char at end index : "+ new_str.charAt(end_index));
-  //
-  //   console.log(target);
-  // }
-  // scholarship_collection.find().toArray((err, result) => {
-  //   result.forEach((scholarship) => {
-  //     curr_req = scholarship.requirements
-  //     console.log(current_user.grades.gpa);
-  //     if(curr_req.includes(`${toString(current_user.grades.gpa)}`)){
-  //       console.log("This scholarship has a GPA Match");
-  //     }else{
-  //       console.log("No Match");
-  //     }
-  //   });
-  // });
+// USE THIS ROUTE FOR TESTING PURPOSES
+router.get('/test', (req, res) => {
+  tokenize.extractGPA(body)
 });
 
 
