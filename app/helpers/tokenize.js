@@ -73,14 +73,16 @@ exports.extractEducationLevel = function(text_body){
   return eduLevel
 }
 
-
+/* Extract the gpa requirement(if any) from the scholarship's description
+  @param - text_body : The scholarship description
+  @return - target_gpa : the gpa requirement of the scholarship
+*/
 exports.extractGPA = function(text_body){
 
   const new_str = text_body.replace(/\s/g, "")
   let target_gpa
   // Fileter 1 : Checks if the gpa is required at all for this scholarship
   if((new_str.includes('GPA') == false) && new_str.includes("gpa") == false){
-    console.log("we dont have a gpa");
     return null
   }
 
