@@ -21,16 +21,12 @@
   "homepage": "https://github.com/scholarship-dev/backend#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "moment": "^2.24.0",
     "mongoose": "^5.4.10",
-    "morgan": "^1.9.1",
     "nightmare": "^3.0.1",
     "nodemon": "^1.18.10",
-    "puppeteer": "^1.12.1",
-    "vo": "^4.0.2"
   },
   "devDependencies": {
     "eslint": "^5.13.0",
