@@ -7,7 +7,7 @@
 const ethnicity_keywords = ["Indigenous", "Hispanic", "Latino", "Latina", "White peope", "African Americans", "Jewish People", "Asian people", "Arabs", "Native Americans", "Black people", "pacific islander", "Irannian people", "Native Hawaiians", "Alaska Natives", "Latino", "Multiracial", "Hispanic and Latino Americans", "Mexicans", "Pacific Islands Americans", "Irish People"]
 const grade_keywords = ["freshman", "sophomore", "junior", "senior"]
 const education_level_keywords = ["high school", "college", "undergrad", "undergraduate", "university"]
-
+const gpa_keywords = ["2.0", "2.5", "3.0", "3.5", "4.0"]
 
 /* Extracts the ethnicity requirement from the scholarship description
   @param - text_body : the string that contains the scholarship requirement
@@ -84,7 +84,28 @@ exports.extractEducationLevel = function(text_body){
   return eduLevel
 }
 
-
+/* Extract the gpa requirement(if any) from the scholarship's description
+  @param - text_body : The scholarship description
+  @return - target_gpa : the gpa requirement of the scholarship
+*/
 exports.extractGPA = function(text_body){
-  // TODO: Extract GPA requirement
+
+  const new_str = text_body.replace(/\s/g, "")
+  let target_gpa
+  // Fileter 1 : Checks if the gpa is required at all for this scholarship
+  if((new_str.includes('GPA') == false) && new_str.includes("gpa") == false){
+    return null
+  }
+
+  // Fileter 2 : Check if key gpa numbers are in the requirements
+  gpa_keywords.forEach(function(gpa){
+
+    // We only extract the GPA and avoid the 4.0 since it's just a scale
+    if(new_str.includes(gpa) && gpa != "4.0"){
+      const start_index = new_str.indexOf(gpa)
+      const end_index = (start_index + gpa.length)
+      target_gpa = new_str.substring(start_index, end_index)
+    }
+  })
+  return target_gpa
 }

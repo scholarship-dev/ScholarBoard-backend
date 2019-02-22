@@ -11,7 +11,6 @@ let scholarship_collection
 let MongoURI = 'mongodb://localhost:27017'
 const Student = require('../../models/student');
 const Scholarship = require('../../models/scholarship');
-
 // DUMMY USER DATA
 const current_user = {
   name: "Medi Assumani",
@@ -21,8 +20,14 @@ const current_user = {
   grades: {
     gpa: 3.5,
     weightedGpa: 4.0
+<<<<<<< HEAD
   },
 };
+=======
+  }
+}
+
+>>>>>>> c0b02cbef5787398f60123bf6da95272f0d63aa1
 
 MongoClient.connect(MongoURI, (error, connected_database) => {
   if (error) throw error;
@@ -63,11 +68,10 @@ router.get('/scholarships/:deadline', (req, res) =>  {
 router.get('/scholarships/:user', (req, res) => {
   Scholarship.find({ gpa: { $gte: 3.5 }, weightedGpa: { $gte: 4.0 } })
     .then(scholarships => res.json(scholarships));
-}); 
+});
 
 // USE THIS ROUTE FOR TESTING PURPOSES
 router.get('/test', (req, res) => {
-
 });
 
 
