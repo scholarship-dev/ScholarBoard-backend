@@ -49,7 +49,7 @@ module.exports = {
     @param - stringArray : An array of raw text
     @return - clean_date : YYYY-MM-DD
   */
-  dateFormat: (stringArray) => {
+  dateFormat: (string) => {
     let clean = [];
     // USING MOMENT.JS TO CONVERT TO ISO DATE FORMAT
     clean.push(moment().format('YYYY MM DD'));
