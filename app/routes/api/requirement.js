@@ -50,7 +50,7 @@ router.get('/scholarships/:ethnicity', (req, res) => {
 }); 
 
 // FUZZY SEARCH TO GET ALL  SCHOLARSHIPS BY DEADLINE
-// assume :deadline YYYY-MM-DD
+// deadline format: YYYY-MM-DD
 // NOT TESTED
 router.get('/scholarships/:deadline', (req, res) =>  {
   let deadlineDate = new Date(req.params.deadline);

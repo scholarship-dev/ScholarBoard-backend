@@ -11,6 +11,9 @@ const grade_keywords = ['freshman', 'sophomore', 'junior', 'senior'];
 const education_level_keywords = ['high school', 'college', 'undergrad', 'undergraduate', 'university'];
 const gpa_keywords = ['2.0', '2.5', '3.0', '3.5', '4.0'];
 
+// IMPORTS
+const moment = require('moment'); 
+
 /* Extracts the ethnicity requirement from the scholarship description
   @param - text_body : the string that contains the scholarship requirement
   @param - user : the user in which we are matching the ethnicity to
@@ -42,9 +45,9 @@ const cleanTextBody = (stringArray) => {
 
 /* Cleans up current date string to a consistent date object so it can be sorted. 
   @param - stringArray : An array of raw text
-  @return - clean_date : Date Object
+  @return - clean_date : YYYY-MM-DD
 */
-exports.dateFormat = function(stringArray){
+const dateFormat = (stringArray) => {
   
 }
 
