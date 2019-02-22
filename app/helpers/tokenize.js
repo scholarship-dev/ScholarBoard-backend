@@ -12,7 +12,7 @@ const education_level_keywords = ['high school', 'college', 'undergrad', 'underg
 const gpa_keywords = ['2.0', '2.5', '3.0', '3.5', '4.0'];
 
 // IMPORTS
-const moment = require('moment'); 
+const moment = require('moment');
 
 /* Extracts the ethnicity requirement from the scholarship description
   @param - text_body : the string that contains the scholarship requirement
@@ -45,7 +45,7 @@ module.exports = {
     return clean_strings;
   },
 
-  /* Cleans up current date string to a consistent date object so it can be sorted. 
+  /* Cleans up current date string to a consistent date object so it can be sorted.
     @param - stringArray : An array of raw text
     @return - clean_date : YYYY-MM-DD
   */
@@ -77,13 +77,13 @@ module.exports = {
                       Example: 'this scholarship is for college students'
   */
   extractEducationLevel: (text_body) => {
-    let eduLevel = []; 
+    let eduLevel = [];
     education_level_keywords.forEach((element) => {
       if (text_body.includes(element)) {
         eduLevel.push(element);
       }
     });
-    return eduLevel; 
+    return eduLevel;
   },
 
   /* Extract the gpa requirement(if any) from the scholarship's description
@@ -91,11 +91,12 @@ module.exports = {
     @return - target_gpa : the gpa requirement of the scholarship
   */
   extractGPA: (text_body) => {
-    const new_str = text_body.replace(/\s/g, ''); 
+    const new_str = text_body.replace(/\s/g, '');
     let target_gpa
     // Fileter 1 : Checks if the gpa is required at all for this scholarship
     if ((new_str.includes('GPA') == false) && new_str.includes('gpa') == false) {
-      return null; 
+      return null;
+    }
 
       // Fileter 2 : Check if key gpa numbers are in the requirements
       gpa_keywords.forEach((gpa) => {
@@ -103,31 +104,9 @@ module.exports = {
         if (new_str.includes(gpa) && gpa != '4.0') {
           const start_index = new_str.indexOf(gpa)
           const end_index = (start_index + gpa.length)
-          target_gpa = new_str.substring(start_index, end_index); 
+          target_gpa = new_str.substring(start_index, end_index);
         }
       })
-    return target_gpa
+      return parseFloat(target_gpa)
     }
-  },
-
-};
-
-  const new_str = text_body.replace(/\s/g, "")
-  let target_gpa
-  // Filter 1 : Checks if the gpa is required at all for this scholarship
-  if((new_str.includes('GPA') == false) && new_str.includes("gpa") == false){
-    return null
   }
-
-  // Filter 2 : Check if key gpa numbers are in the requirements
-  gpa_keywords.forEach(function(gpa){
-
-    // We only extract the GPA and avoid the 4.0 since it's just a scale
-    if(new_str.includes(gpa) && gpa != "4.0"){
-      const start_index = new_str.indexOf(gpa)
-      const end_index = (start_index + gpa.length)
-      target_gpa = new_str.substring(start_index, end_index)
-    }
-  })
-  return target_gpa
-}
