@@ -101,10 +101,10 @@ const extractGPA = (text_body) => {
 }
 
 module.exports = {
-  extractEthnicity,
-  cleanTextBody,
-  dateFormat,
-  extractGrade,
-  extractEducationLevel,
-  extractGPA
+  extractEthnicity(),
+  cleanTextBody(),
+  dateFormat(),
+  extractGrade(),
+  extractEducationLevel(),
+  extractGPA()
 }; 

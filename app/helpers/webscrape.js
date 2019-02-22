@@ -13,6 +13,9 @@ const mongoose = require('mongoose')
 const Scholarship = require('../models/scholarship');
 require('../database/scholarboard-db');
 
+// WEBSCRAPE HELPER FUNCTIONS
+const helper = require('./tokenize');
+
 let url = 'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-major/accounting-scholarships/%C2%A1adelante-fund-millercoors-colorado-scholarship/'
 // # TODO: ASK DANI IF YOU CAN LOOP THROUGH AN ARRAY WITH .togo WITH NIGHTMARE
 
@@ -47,10 +50,10 @@ nightmare
       funding: clean_data[2],
       contactInfo: clean_data[3],
       description: clean_data[4],
-      grade: tokenize.extractGrade(scholRequirements),
-      ethnicity: tokenize.extractEthnicity(scholRequirements),
-      educationLevel: tokenize.extractEducationLevel(scholRequirements),
-      gpa: tokenize.extractGPA(scholRequirements)
+      grade: helper.extractGrade(scholRequirements),
+      ethnicity: helper.extractEthnicity(scholRequirements),
+      educationLevel: helper.extractEducationLevel(scholRequirements),
+      gpa: helper.extractGPA(scholRequirements)
     };
 
     // CREATING AND SAVING A NEW SCHOLARSHIP OBJECT

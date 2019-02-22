@@ -1,6 +1,8 @@
+//
+// ─── API FOR SCHOLARSHIP DATA ───────────────────────────────────────────────────
+//
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
-// API TO FETCH SCHOLARSHIP REQUIREMENTS
 const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient
@@ -11,6 +13,7 @@ let scholarship_collection
 let MongoURI = 'mongodb://localhost:27017'
 const Student = require('../../models/student');
 const Scholarship = require('../../models/scholarship');
+
 // DUMMY USER DATA
 const current_user = {
   name: "Medi Assumani",
@@ -32,7 +35,6 @@ MongoClient.connect(MongoURI, (error, connected_database) => {
 })
 
 // GET ALL SCHOLARSHIPS
-// TESTED
 router.get('/scholarships', (req, res) => {
   Scholarship.find()
     .then(scholarships => res.json(scholarships));
@@ -40,7 +42,6 @@ router.get('/scholarships', (req, res) => {
 
 // FUZZY SEARCH TO GET ALL SCHOLARSHIPS BY ETHNICITY
 // FIND ANTHING 'LIKE' ETHNICITY
-// TESTED
 router.get('/scholarships/:ethnicity', (req, res) => {
   const ethnicity = new RegExp(req.params.ethnicity); // '/i'
   Scholarship.find({ ethnicity })
@@ -49,6 +50,7 @@ router.get('/scholarships/:ethnicity', (req, res) => {
 
 // FUZZY SEARCH TO GET ALL  SCHOLARSHIPS BY DEADLINE
 // assume :deadline YYYY-MM-DD
+// NOT TESTED
 router.get('/scholarships/:deadline', (req, res) =>  {
   let deadlineDate = new Date(req.params.deadline);
   // { $dateFromString: {
