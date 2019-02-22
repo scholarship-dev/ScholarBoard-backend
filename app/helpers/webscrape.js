@@ -10,59 +10,71 @@
 require('dotenv').config()
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
+const vo = require('vo');
 const cheerio = require('cheerio');
-const tokenize = require('./tokenize')
 const Scholarship = require('../models/scholarship');
 require('../database/scholarboard-db');
 
 // WEBSCRAPE HELPER FUNCTIONS
 const helper = require('./tokenize');
 
-let url = 'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-major/accounting-scholarships/%C2%A1adelante-fund-millercoors-colorado-scholarship/'
-// # TODO: ASK DANI IF YOU CAN LOOP THROUGH AN ARRAY WITH .togo WITH NIGHTMARE
+let urls = [
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-major/accounting-scholarships/%C2%A1adelante-fund-millercoors-colorado-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/%C2%A1adelante-mark-l-madrid-scholarship'
+];
 
+const nextLink = () => {
+  const theURL = urls.pop(); 
+  // scrape the web 
+  nightmare
+    .goto(theURL)
+    .evaluate(() => {
+      return document.body.innerHTML;
+    })
+    .then((result) => {
+      // LOADING HTML
+      const $ = cheerio.load(result);
 
-nightmare
-  .goto(url)
-  .evaluate(() => {
-    return document.body.innerHTML;
-  })
-  .then((result) => {
-    // LOADING HTML
-    const $ = cheerio.load(result);
+      // EXTRACTING NEEDED INFORMATON FROM HTML BODY
+      const scholName = $('.eyebrow').next().text();
+      const scholDeadline = $('#due-date-text').text();
+      const scholFunding = $('.award-info-row :nth-child(1)').text();
+      const scholContact1 = $('#liAddress1Text').text();
+      const scholContact2 = $('#liAddress2Text').text();
+      const scholContact3 = $('#liCityStateZIPText').text();
+      const scholContact4 = $('#ulScholDetails li:nth-child(8)').text();
+      const scholContact = scholContact1 + scholContact2 + scholContact3 + scholContact4;
+      const scholRequirements = $('#ulScholDetails li.scholdescrip div').text();
 
-    // EXTRACTING NEEDED INFORMATON FROM HTML BODY
-    const scholName = $('.eyebrow').next().text();
-    const scholDeadline = $('#due-date-text').text();
-    const scholFunding = $('.award-info-row :nth-child(1)').text();
-    const scholContact1 = $('#liAddress1Text').text();
-    const scholContact2 = $('#liAddress2Text').text();
-    const scholContact3 = $('#liCityStateZIPText').text();
-    const scholContact4 = $('#ulScholDetails li:nth-child(8)').text();
-    const scholContact = scholContact1 + scholContact2 + scholContact3 + scholContact4;
-    const scholRequirements = $('#ulScholDetails li.scholdescrip div').text();
+      // Cleaning up scrapped data. The ORDER OF APPENDING TO ARRAY MATTERS!!
+      const clean_data = helper.cleanTextBody([scholName, scholDeadline, scholFunding, scholContact, scholRequirements]);
 
-    // Cleaning up scrapped data. The ORDER OF APPENDING TO ARRAY MATTERS!!
-    const clean_data = helper.cleanTextBody([scholName, scholDeadline, scholFunding, scholContact, scholRequirements]);
+      // SAVE TEXT AS PROPERTY OF RESULT OBJ
+      const result_obj = {
+        name: clean_data[0],
+        deadline: new Date(helper.dateFormat(clean_data[1])),
+        funding: clean_data[2],
+        contactInfo: clean_data[3],
+        description: clean_data[4],
+        grade: helper.extractGrade(scholRequirements),
+        ethnicity: helper.extractEthnicity(scholRequirements),
+        educationLevel: helper.extractEducationLevel(scholRequirements),
+        gpa: helper.extractGPA(scholRequirements),
+      };
 
-    // SAVE TEXT AS PROPERTY OF RESULT OBJ
-    const result_obj = {
-      name: clean_data[0],
-      deadline: new Date(helper.dateFormat(clean_data[1])),
-      funding: clean_data[2],
-      contactInfo: clean_data[3],
-      description: clean_data[4],
-      grade: helper.extractGrade(scholRequirements),
-      ethnicity: helper.extractEthnicity(scholRequirements),
-      educationLevel: helper.extractEducationLevel(scholRequirements),
-      gpa: helper.extractGPA(scholRequirements),
-    };
+      // CREATING AND SAVING A NEW SCHOLARSHIP OBJECT
+      const scholarship = new Scholarship(result_obj);
+      return scholarship.save()
 
-    // CREATING AND SAVING A NEW SCHOLARSHIP OBJECT
-    const scholarship = new Scholarship(result_obj);
-    scholarship.save()
+    }).then((scholarship) => {
+      console.log('scholarship saved')
+      if (urls.length > 0) {
+        nextLink()
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
+  // console.log(`${link} scapred...`)
+}
 
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+nextLink();
