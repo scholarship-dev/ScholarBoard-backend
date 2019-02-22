@@ -1,15 +1,17 @@
+//
+// ─── DATA SCRAPE FROM SCHOLARSHIPS.COM ───────────────────────────────────────────
+//
+
+/* eslint-disable max-len */
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
 /* eslint-disable func-names */
-
-// DATA SCRAPE FROM SCHOLARSHIPS.COM
+  
 require('dotenv').config()
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
 const cheerio = require('cheerio');
-const fs = require('fs');
-const tokenize = require("./tokenize")
-const mongoose = require('mongoose')
+const tokenize = require('./tokenize')
 const Scholarship = require('../models/scholarship');
 require('../database/scholarboard-db');
 
@@ -41,12 +43,12 @@ nightmare
     const scholRequirements = $('#ulScholDetails li.scholdescrip div').text();
 
     // Cleaning up scrapped data. The ORDER OF APPENDING TO ARRAY MATTERS!!
-    const clean_data = tokenize.cleanTextBody([scholName, scholDeadline, scholFunding, scholContact, scholRequirements])
+    const clean_data = tokenize.cleanTextBody([scholName, scholDeadline, scholFunding, scholContact, scholRequirements]);
 
     // SAVE TEXT AS PROPERTY OF RESULT OBJ
     const result_obj = {
       name: clean_data[0],
-      deadline: clean_data[1],
+      deadline: helper.dateFormat(clean_data[1]),
       funding: clean_data[2],
       contactInfo: clean_data[3],
       description: clean_data[4],
