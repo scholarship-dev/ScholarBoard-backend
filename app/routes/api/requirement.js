@@ -28,6 +28,7 @@ const current_user = {
   },
 };
 
+
 MongoClient.connect(MongoURI, (error, connected_database) => {
   if (error) throw error;
   if (!error) {
