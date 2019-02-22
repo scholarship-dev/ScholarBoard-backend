@@ -25,19 +25,9 @@ const current_user = {
   grades: {
     gpa: 3.5,
     weightedGpa: 4.0
-<<<<<<< HEAD
-<<<<<<< HEAD
   },
 };
-=======
-  }
-}
 
->>>>>>> c0b02cbef5787398f60123bf6da95272f0d63aa1
-=======
-  },
-};
->>>>>>> TL-api
 
 MongoClient.connect(MongoURI, (error, connected_database) => {
   if (error) throw error;
