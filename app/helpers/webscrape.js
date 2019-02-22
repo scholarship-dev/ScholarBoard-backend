@@ -10,7 +10,6 @@
 require('dotenv').config()
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
-const vo = require('vo');
 const cheerio = require('cheerio');
 const Scholarship = require('../models/scholarship');
 require('../database/scholarboard-db');
