@@ -11,7 +11,6 @@ let scholarship_collection
 let MongoURI = 'mongodb://localhost:27017'
 const Student = require('../../models/student');
 const Scholarship = require('../../models/scholarship');
-
 // DUMMY USER DATA
 const current_user = {
   name: "Medi Assumani",
@@ -49,8 +48,9 @@ router.get('/scholarships/:ethnicity', (req, res) => {
 }); 
 
 // FUZZY SEARCH TO GET ALL  SCHOLARSHIPS BY DEADLINE
+// assume :deadline YYYY-MM-DD
 router.get('/scholarships/:deadline', (req, res) =>  {
-  const deadline = new RegExp(req.params.deadline);
+  let deadlineDate = new Date(req.params.deadline);
   // { $dateFromString: {
   //   dateString: toString(deadline),
   // }}
@@ -63,11 +63,10 @@ router.get('/scholarships/:deadline', (req, res) =>  {
 router.get('/scholarships/:user', (req, res) => {
   Scholarship.find({ gpa: { $gte: 3.5 }, weightedGpa: { $gte: 4.0 } })
     .then(scholarships => res.json(scholarships));
-}); 
+});
 
 // USE THIS ROUTE FOR TESTING PURPOSES
 router.get('/test', (req, res) => {
-
 });
 
 

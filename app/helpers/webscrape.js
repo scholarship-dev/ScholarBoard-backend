@@ -20,7 +20,7 @@ let url = 'https://www.scholarships.com/financial-aid/college-scholarships/schol
 nightmare
   .goto(url)
   .evaluate(() => {
-    return document.body.innerHTML; 
+    return document.body.innerHTML;
   })
   .then((result) => {
     // LOADING HTML
@@ -49,7 +49,8 @@ nightmare
       description: clean_data[4],
       grade: tokenize.extractGrade(scholRequirements),
       ethnicity: tokenize.extractEthnicity(scholRequirements),
-      educationLevel: tokenize.extractEducationLevel(scholRequirements)
+      educationLevel: tokenize.extractEducationLevel(scholRequirements),
+      gpa: tokenize.extractGPA(scholRequirements)
     };
 
     // CREATING AND SAVING A NEW SCHOLARSHIP OBJECT
@@ -58,5 +59,5 @@ nightmare
 
   })
   .catch((err) => {
-    console.log(err); 
+    console.log(err);
   });
