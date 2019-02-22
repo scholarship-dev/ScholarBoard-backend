@@ -43,7 +43,7 @@ nightmare
     const scholRequirements = $('#ulScholDetails li.scholdescrip div').text();
 
     // Cleaning up scrapped data. The ORDER OF APPENDING TO ARRAY MATTERS!!
-    const clean_data = tokenize.cleanTextBody([scholName, scholDeadline, scholFunding, scholContact, scholRequirements]);
+    const clean_data = helper.cleanTextBody([scholName, scholDeadline, scholFunding, scholContact, scholRequirements]);
 
     // SAVE TEXT AS PROPERTY OF RESULT OBJ
     const result_obj = {
@@ -55,7 +55,7 @@ nightmare
       grade: helper.extractGrade(scholRequirements),
       ethnicity: helper.extractEthnicity(scholRequirements),
       educationLevel: helper.extractEducationLevel(scholRequirements),
-      gpa: helper.extractGPA(scholRequirements)
+      gpa: helper.extractGPA(scholRequirements),
     };
 
     // CREATING AND SAVING A NEW SCHOLARSHIP OBJECT

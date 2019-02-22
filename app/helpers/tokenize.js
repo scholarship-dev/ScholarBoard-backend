@@ -49,12 +49,11 @@ module.exports = {
     @param - stringArray : An array of raw text
     @return - clean_date : YYYY-MM-DD
   */
-  dateFormatObj: (stringArray) => {
+  dateFormat: (stringArray) => {
     let clean = [];
-    stringArray.forEach((string) => {
-      // USING MOMENT.JS TO CONVERT TO ISO DATE FORMAT
-      clean.push(string.moment.format('YYYY MM DD'))
-    })
+    // USING MOMENT.JS TO CONVERT TO ISO DATE FORMAT
+    clean.push(moment().format('YYYY MM DD'));
+    return clean;
   },
 
   /* Extract the grade(s) requirements from the scholarship's description
