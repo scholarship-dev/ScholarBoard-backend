@@ -55,7 +55,7 @@ router.get('/scholarships/race/:ethnicity', (req, res) => {
 // NOT TESTED
 router.get('/scholarships/date/:deadline', (req, res) => {
   let deadlineDate = new RegExp(req.params.deadline);
-  Scholarship.find({ deadline: { $gte: deadlineDate } })
+  Scholarship.find({ deadline: { $gte: date(deadlineDate) } })
     .then(scholarships => res.json(scholarships))
 }); 
 
