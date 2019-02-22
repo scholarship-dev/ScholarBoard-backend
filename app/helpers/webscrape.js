@@ -48,7 +48,7 @@ nightmare
     // SAVE TEXT AS PROPERTY OF RESULT OBJ
     const result_obj = {
       name: clean_data[0],
-      deadline: helper.dateFormat(clean_data[1]),
+      deadline: new Date(helper.dateFormat(clean_data[1])),
       funding: clean_data[2],
       contactInfo: clean_data[3],
       description: clean_data[4],
