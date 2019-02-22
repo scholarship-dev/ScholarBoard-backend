@@ -24,6 +24,7 @@
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "moment": "^2.24.0",
     "mongoose": "^5.4.10",
     "morgan": "^1.9.1",
     "nightmare": "^3.0.1",

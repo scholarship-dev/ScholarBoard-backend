@@ -1,16 +1,21 @@
+//
+// ─── API FOR SCHOLARSHIP DATA ───────────────────────────────────────────────────
+//
+
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
-// API TO FETCH SCHOLARSHIP REQUIREMENTS
 const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient
-const tokenize = require("../../helpers/tokenize")
-const databaseName = 'ScholarBoardData1234'
-let database
-let scholarship_collection
-let MongoURI = 'mongodb://localhost:27017'
+
+// IMPORTS
 const Student = require('../../models/student');
 const Scholarship = require('../../models/scholarship');
+
+let database;
+const databaseName = 'ScholarBoardData1234';
+let MongoURI = 'mongodb://localhost:27017';
+
 // DUMMY USER DATA
 const current_user = {
   name: "Medi Assumani",
@@ -21,6 +26,7 @@ const current_user = {
     gpa: 3.5,
     weightedGpa: 4.0
 <<<<<<< HEAD
+<<<<<<< HEAD
   },
 };
 =======
@@ -28,6 +34,10 @@ const current_user = {
 }
 
 >>>>>>> c0b02cbef5787398f60123bf6da95272f0d63aa1
+=======
+  },
+};
+>>>>>>> TL-api
 
 MongoClient.connect(MongoURI, (error, connected_database) => {
   if (error) throw error;
@@ -38,7 +48,6 @@ MongoClient.connect(MongoURI, (error, connected_database) => {
 })
 
 // GET ALL SCHOLARSHIPS
-// TESTED
 router.get('/scholarships', (req, res) => {
   Scholarship.find()
     .then(scholarships => res.json(scholarships));
@@ -46,26 +55,23 @@ router.get('/scholarships', (req, res) => {
 
 // FUZZY SEARCH TO GET ALL SCHOLARSHIPS BY ETHNICITY
 // FIND ANTHING 'LIKE' ETHNICITY
-// TESTED
-router.get('/scholarships/:ethnicity', (req, res) => {
+router.get('/scholarships/race/:ethnicity', (req, res) => {
   const ethnicity = new RegExp(req.params.ethnicity); // '/i'
   Scholarship.find({ ethnicity })
     .then(scholarships => res.json(scholarships));
 }); 
 
-// FUZZY SEARCH TO GET ALL  SCHOLARSHIPS BY DEADLINE
-router.get('/scholarships/:deadline', (req, res) =>  {
-  const deadline = new RegExp(req.params.deadline);
-  // { $dateFromString: {
-  //   dateString: toString(deadline),
-  // }}
-  Scholarship.find({ deadline: deadlineString });
+// RANGE QUERY FOR SCHOLARSHIP BY SEPCIFIC DATE
+// deadline format: YYYY-MM-DD
+router.get('/scholarships/deadline/:dateYear/:dateMonth/:dateDay', (req, res) => {
+  // let deadline = new RegExp(req.params.deadline);
+  Scholarship.find({deadline: {$gte: new Date(`${req.params.dateYear  }-${  req.params.dateMonth  }-${  req.params.dateDay}`)}})
+    .then(scholarships => res.json(scholarships))
 }); 
 
 // THIS ROUTE SHOULD BE AT THE BOTTOM AS IT HAS 2 VARIABLES
-// COULD REGISTER ALL ROUTES WITH 2 PARAMATERS AS VARIABLE ONES
 // GET ALL SCHOLARSHIPS WITH AT LEAST A GPA OF 3.5 AND WEIGHTED GPA OF 4.0
-router.get('/scholarships/:user', (req, res) => {
+router.get('/scholarships/account/:user', (req, res) => {
   Scholarship.find({ gpa: { $gte: 3.5 }, weightedGpa: { $gte: 4.0 } })
     .then(scholarships => res.json(scholarships));
 });
