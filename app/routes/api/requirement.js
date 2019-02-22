@@ -54,7 +54,6 @@ router.get('/scholarships/race/:ethnicity', (req, res) => {
 // RANGE QUERY FOR SCHOLARSHIP BY SEPCIFIC DATE
 // deadline format: YYYY-MM-DD
 router.get('/scholarships/deadline/:dateYear/:dateMonth/:dateDay', (req, res) => {
-  // let deadline = new RegExp(req.params.deadline);
   Scholarship.find({deadline: {$gte: new Date(`${req.params.dateYear  }-${  req.params.dateMonth  }-${  req.params.dateDay}`)}})
     .then(scholarships => res.json(scholarships))
 }); 
