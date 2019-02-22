@@ -10,16 +10,19 @@
 require('dotenv').config()
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
+const vo = require('vo');
 const cheerio = require('cheerio');
-const tokenize = require('./tokenize')
+const helper = require('./tokenize')
 const Scholarship = require('../models/scholarship');
 require('../database/scholarboard-db');
 
 // WEBSCRAPE HELPER FUNCTIONS
 const helper = require('./tokenize');
 
-let url = 'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-major/accounting-scholarships/%C2%A1adelante-fund-millercoors-colorado-scholarship/'
-// # TODO: ASK DANI IF YOU CAN LOOP THROUGH AN ARRAY WITH .togo WITH NIGHTMARE
+let urls = [
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-major/accounting-scholarships/%C2%A1adelante-fund-millercoors-colorado-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/%C2%A1adelante-mark-l-madrid-scholarship'
+];
 
 
 nightmare
