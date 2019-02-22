@@ -18,10 +18,10 @@ let MongoURI = 'mongodb://localhost:27017';
 
 // DUMMY USER DATA
 const current_user = {
-  name: "Medi Assumani",
-  ethnicity: "Hispanic",
+  name: 'Medi Assumani',
+  ethnicity: 'Hispanic',
   gpa: 3.0,
-  dob: "March 14 1999",
+  dob: 'March 14 1999',
   grades: {
     gpa: 3.5,
     weightedGpa: 4.0
@@ -58,8 +58,7 @@ router.get('/scholarships/deadline/:dateYear/:dateMonth/:dateDay', (req, res) =>
     .then(scholarships => res.json(scholarships))
 }); 
 
-// THIS ROUTE SHOULD BE AT THE BOTTOM AS IT HAS 2 VARIABLES
-// GET ALL SCHOLARSHIPS WITH AT LEAST A GPA OF 3.5 AND WEIGHTED GPA OF 4.0
+// RANGE QUERY TO MATCH SCHOLARSHIPS WITH USER DATA
 router.get('/scholarships/account/:user', (req, res) => {
   Scholarship.find({ gpa: { $gte: 3.5 }, weightedGpa: { $gte: 4.0 } })
     .then(scholarships => res.json(scholarships));
