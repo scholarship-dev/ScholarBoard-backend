@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const server = express();
 const authRouter = require('./routes/api/auth');
 const requirementRouter = require('./routes/api/requirement');
+const scholarhips = require("./routes/api/scholarships")
 require('./database/scholarboard-db');
 const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "Jewish People", "Asian people", "Arabs", "Native Americans", "Black people", "pacific islander", "Irannian people", "Native Hawaiians", "Alaska Natives", "Latino", "Multiracial", "Hispanic and Latino Americans", "Mexicans", "Pacific Islands Americans", "Irish People"]
 
@@ -20,6 +21,7 @@ server.use(bodyParser.json());
 // server.use('/api', indexRouter);
 // server.use('/api', authRouter);
 server.use(requirementRouter);
+server.use(scholarhips);
 // server.use('/api', studentRouter);
 
 
