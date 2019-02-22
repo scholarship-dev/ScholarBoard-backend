@@ -6,7 +6,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
 /* eslint-disable func-names */
-  
 require('dotenv').config()
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
@@ -73,7 +72,6 @@ const nextLink = () => {
     }).catch((err) => {
       console.log(err);
     });
-  // console.log(`${link} scapred...`)
 }
 
 nextLink();
