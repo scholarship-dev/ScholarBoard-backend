@@ -19,95 +19,94 @@ const moment = require('moment');
   @param - user : the user in which we are matching the ethnicity to
   @return - ethnicity : the ethnicity requirement
 */
-const extractEthnicity = (text_body) => {
-  const stripped_text = text_body.replace(/\s/g, '');
-  const inclusive_ethnicity = [];
-  ethnicity_keywords.forEach((ethni_keyword) => {
-    if (stripped_text.includes(ethni_keyword)) {
-      inclusive_ethnicity.push(ethni_keyword);
-    }
-  })
-
-  return inclusive_ethnicity
-};
-
-/* Cleans up a body of text from special characters
-  @param - stringArray : An array of strings to be cleaned up
-  @return - clean_strings : An array of cleaned up string in order they were passed
-*/
-const cleanTextBody = (stringArray) => {
-  let clean_strings = [];
-  stringArray.forEach((string) => {
-    clean_strings.push(string.replace(/(\t\n|\n|\t)/gm, ''))
-  });
-  return clean_strings;
-}
-
-/* Cleans up current date string to a consistent date object so it can be sorted. 
-  @param - stringArray : An array of raw text
-  @return - clean_date : YYYY-MM-DD
-*/
-const dateFormat = (stringArray) => {
-  
-}
-
-/* Extract the grade(s) requirements from the scholarship's description
-  @param - text_body : The scholarship description
-  @return - grades : An array of grades requirements from the description
-                    Example: 'this scholarship is for juniors and seniors'
-*/
-const extractGrade = (text_body) => {
-  let grades = [];
-  grade_keywords.forEach((element) => {
-    if(text_body.includes(element)) {
-      grades.push(element);
-    }
-  });
-  return grades;
-};
-
-/* Extract the education leve(s) requirements from the scholarship's description
-  @param - text_body : The scholarship description
-  @return - eduLevel : An array of edu. level requirements from the description
-                    Example: 'this scholarship is for college students'
-*/
-const extractEducationLevel = (text_body) => {
-  let eduLevel = []; 
-  education_level_keywords.forEach((element) => {
-    if (text_body.includes(element)) {
-      eduLevel.push(element);
-    }
-  });
-  return eduLevel; 
-};
-
-/* Extract the gpa requirement(if any) from the scholarship's description
-  @param - text_body : The scholarship description
-  @return - target_gpa : the gpa requirement of the scholarship
-*/
-const extractGPA = (text_body) => {
-  const new_str = text_body.replace(/\s/g, ''); 
-  let target_gpa
-  // Fileter 1 : Checks if the gpa is required at all for this scholarship
-  if ((new_str.includes('GPA') == false) && new_str.includes('gpa') == false) {
-    return null; 
-  // Fileter 2 : Check if key gpa numbers are in the requirements
-  gpa_keywords.forEach((gpa) => {
-    // We only extract the GPA and avoid the 4.0 since it's just a scale
-    if (new_str.includes(gpa) && gpa != '4.0') {
-      const start_index = new_str.indexOf(gpa)
-      const end_index = (start_index + gpa.length)
-      target_gpa = new_str.substring(start_index, end_index); 
-    }
-  })
-  return target_gpa
-}
 
 module.exports = {
-  extractEthnicity(),
-  cleanTextBody(),
-  dateFormat(),
-  extractGrade(),
-  extractEducationLevel(),
-  extractGPA()
-}; 
+  extractEthnicity = (text_body) => {
+    const stripped_text = text_body.replace(/\s/g, '');
+    const inclusive_ethnicity = [];
+    ethnicity_keywords.forEach((ethni_keyword) => {
+      if (stripped_text.includes(ethni_keyword)) {
+        inclusive_ethnicity.push(ethni_keyword);
+      }
+    })
+
+    return inclusive_ethnicity
+  },
+
+  /* Cleans up a body of text from special characters
+    @param - stringArray : An array of strings to be cleaned up
+    @return - clean_strings : An array of cleaned up string in order they were passed
+  */
+  cleanTextBody = (stringArray) => {
+    let clean_strings = [];
+    stringArray.forEach((string) => {
+      clean_strings.push(string.replace(/(\t\n|\n|\t)/gm, ''))
+    });
+    return clean_strings;
+  },
+
+  /* Cleans up current date string to a consistent date object so it can be sorted. 
+    @param - stringArray : An array of raw text
+    @return - clean_date : YYYY-MM-DD
+  */
+  dateFormatObj = (stringArray) => {
+    let clean = [];
+    stringArray.forEach((string) => {
+      // USING MOMENT.JS TO CONVERT TO ISO DATE FORMAT
+      clean.push(string.moment.format('YYYY MM DD'))
+    })
+  },
+
+  /* Extract the grade(s) requirements from the scholarship's description
+    @param - text_body : The scholarship description
+    @return - grades : An array of grades requirements from the description
+                      Example: 'this scholarship is for juniors and seniors'
+  */
+  extractGrade = (text_body) => {
+    let grades = [];
+    grade_keywords.forEach((element) => {
+      if(text_body.includes(element)) {
+        grades.push(element);
+      }
+    });
+    return grades;
+  },
+
+  /* Extract the education leve(s) requirements from the scholarship's description
+    @param - text_body : The scholarship description
+    @return - eduLevel : An array of edu. level requirements from the description
+                      Example: 'this scholarship is for college students'
+  */
+  extractEducationLevel = (text_body) => {
+    let eduLevel = []; 
+    education_level_keywords.forEach((element) => {
+      if (text_body.includes(element)) {
+        eduLevel.push(element);
+      }
+    });
+    return eduLevel; 
+  },
+
+  /* Extract the gpa requirement(if any) from the scholarship's description
+    @param - text_body : The scholarship description
+    @return - target_gpa : the gpa requirement of the scholarship
+  */
+  extractGPA = (text_body) => {
+    const new_str = text_body.replace(/\s/g, ''); 
+    let target_gpa
+    // Fileter 1 : Checks if the gpa is required at all for this scholarship
+    if ((new_str.includes('GPA') == false) && new_str.includes('gpa') == false) {
+      return null; 
+    // Fileter 2 : Check if key gpa numbers are in the requirements
+    gpa_keywords.forEach((gpa) => {
+      // We only extract the GPA and avoid the 4.0 since it's just a scale
+      if (new_str.includes(gpa) && gpa != '4.0') {
+        const start_index = new_str.indexOf(gpa)
+        const end_index = (start_index + gpa.length)
+        target_gpa = new_str.substring(start_index, end_index); 
+      }
+    })
+    return target_gpa
+  }
+
+}
