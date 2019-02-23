@@ -1,5 +1,6 @@
 // IMPORT NEEDED MODULES AND CONTROLLERS
 require('dotenv').config();
+const port = process.env.DEV_PORT || 3000
 const express = require('express');
 const bodyParser = require('body-parser');
 const server = express();
@@ -26,7 +27,6 @@ server.use(scholarhips);
 
 
 // PORT
-const port = 3000;
 server.listen(port);
 
 module.exports = server;

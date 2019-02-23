@@ -4,7 +4,8 @@
   "description": "A scholarship API that will match students will scholarships they meet the requirements for.",
   "main": "server.js",
   "directories": {
-    "doc": "docs"
+    "doc": "docs",
+    "start": "node server.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
