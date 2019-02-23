@@ -10,8 +10,8 @@ const ScholarshipSchema = new Schema({
   ethnicity: { type: String, required: false },
   educationLevel: { type: String, required: false },
   // GRADE LEVEL
-  grade: { type: String, required: true }, 
-  gpa: {type: String, required: false }, 
+  grade: { type: String, required: true },
+  gpa: {type: String, required: false },
 });
 
 module.exports = mongoose.model('Scholarship', ScholarshipSchema);
