@@ -98,6 +98,8 @@ module.exports = {
       return null;
     }
 
+    }
+
       // Fileter 2 : Check if key gpa numbers are in the requirements
       gpa_keywords.forEach((gpa) => {
         // We only extract the GPA and avoid the 4.0 since it's just a scale
