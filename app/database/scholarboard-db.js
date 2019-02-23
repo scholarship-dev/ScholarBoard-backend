@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
       assert = require("assert");
 
-const url = "mongodb://localhost/ScholarBoardData1234";
+const url = process.env.MONGODB_URI || "mongodb://localhost/ScholarBoardData1234";
 mongoose.Promise = global.Promise;
 mongoose.connect(
   url,
