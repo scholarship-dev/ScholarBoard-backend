@@ -9,6 +9,7 @@ const current_user = {
   ethnicity: "Hispanic",
   gpa: 3.0,
   dob: "March 14 1999",
+  educationLevel: "college",
   grades: {
     gpa: 3.5,
     weightedGpa: 4.0
@@ -17,9 +18,9 @@ const current_user = {
 
 
 
-// ENDPOINT TO GET ALL SCHOLARSHIP
+// ENDPOINT TO GET ALL SCHOLARSHIP THAT MATCH STUDENT 
 router.get("/api/scholarships", function(req, res){
-  Scholarship.find({ gpa: { $lte: current_user.grades.gpa } })
+  Scholarship.find({ $or: [ { gpa: { $lte: current_user.grades.gpa}}, { ethnicity: current_user.ethnicity}, {educationLevel: current_user.educationLevel} ] })
     .then( (scholarships) => {
       res.send(scholarships)
     })
