@@ -15,7 +15,7 @@ const tokenize = require("../../helpers/tokenize")
 
 let database;
 const databaseName = 'ScholarBoardData1234';
-let MongoURI = 'mongodb://localhost:27017';
+let MongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 let body = "The ¡Adelante! U.S. Education Leadership Fund is a leadership development, non-profit organization dedicated to Hispanic college students. Our mission is to inspire the best and brightest Latino students to graduate and lead through scholarships, internships, and leadership training. Must be a junior or senior university classification by the fall semester. Open only to Chicagoland partnering universities. Applicants must be of Hispanic descent and must be a US citizen or legal permanent resident with a GPA of 2.5 or higher on a 4.0 scale. For more information or to apply, please visit the scholarship provider's website."
 
 // DUMMY USER DATA
