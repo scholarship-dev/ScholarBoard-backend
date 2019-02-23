@@ -97,18 +97,16 @@ module.exports = {
     if ((new_str.includes('GPA') == false) && new_str.includes('gpa') == false) {
       return null;
     }
+    // Fileter 2 : Check if key gpa numbers are in the requirements
+    gpa_keywords.forEach((gpa) => {
+      // We only extract the GPA and avoid the 4.0 since it's just a scale
+      if (new_str.includes(gpa) && gpa != '4.0') {
+        const start_index = new_str.indexOf(gpa)
+        const end_index = (start_index + gpa.length)
+        target_gpa = new_str.substring(start_index, end_index);
+      }
+    })
 
-    }
-
-      // Fileter 2 : Check if key gpa numbers are in the requirements
-      gpa_keywords.forEach((gpa) => {
-        // We only extract the GPA and avoid the 4.0 since it's just a scale
-        if (new_str.includes(gpa) && gpa != '4.0') {
-          const start_index = new_str.indexOf(gpa)
-          const end_index = (start_index + gpa.length)
-          target_gpa = new_str.substring(start_index, end_index);
-        }
-      })
-      return parseFloat(target_gpa)
+    return parseFloat(target_gpa)
     }
   }
