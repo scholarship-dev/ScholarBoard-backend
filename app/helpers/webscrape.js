@@ -17,8 +17,11 @@ require('../database/scholarboard-db');
 const helper = require('./tokenize');
 
 let urls = [
-  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-major/accounting-scholarships/%C2%A1adelante-fund-millercoors-colorado-scholarship/',
-  'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/%C2%A1adelante-mark-l-madrid-scholarship'
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/aauw-return-to-learning-scholarships',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/abc-humane-wildlife-control-and-prevention-inc-academic-scholarship',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/accounting-and-financial-womens-alliance-scholarship-bellevue-chapter',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/acf-barnes-w-rose-jr-and-eva-rose-nichol-scholarship-program',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/acf-trythall-family-scholarship-for-excellence-in-continuing-education'
 ];
 
 const nextLink = () => {
