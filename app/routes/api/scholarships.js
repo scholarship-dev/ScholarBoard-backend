@@ -23,21 +23,18 @@ router.get("/api/scholarships/:id", function(req, res){
     })
 })
 
-// FUZZY SEARCH TO GET ALL SCHOLARSHIPS BY ETHNICITY
-// FIND ANTHING 'LIKE' ETHNICITY
+// ENDPOINT TO DO A FUZZY SEARCH TO GET ALL SCHOLARSHIPS BY ETHNICITY
 router.get('/scholarships/race/:ethnicity', (req, res) => {
   const ethnicity = new RegExp(req.params.ethnicity); // '/i'
   Scholarship.find({ ethnicity })
     .then(scholarships => res.json(scholarships));
 });
 
-// RANGE QUERY FOR SCHOLARSHIP BY SEPCIFIC DATE
-// deadline format: YYYY-MM-DD
+// ENDPOINT TO DO A RANGE QUERY FOR SCHOLARSHIP BY SEPCIFIC DATE
 router.get('/scholarships/deadline/:dateYear/:dateMonth/:dateDay', (req, res) => {
   Scholarship.find({deadline: {$gte: new Date(`${req.params.dateYear  }-${  req.params.dateMonth  }-${  req.params.dateDay}`)}})
     .then(scholarships => res.json(scholarships))
 });
-
 
 
 module.exports = router

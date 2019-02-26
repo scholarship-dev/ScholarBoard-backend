@@ -2,7 +2,7 @@
 
 // Constantly checks if the user is Autheticated
 var checkAuth = (request, response, next) => {
-  
+  console.log("checking auth");
   if (typeof request.cookies.scToken === "undefined" || request.cookies.scToken === null) {
     request.user = null;
   } else {

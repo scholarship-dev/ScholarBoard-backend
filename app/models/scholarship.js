@@ -9,7 +9,6 @@ const ScholarshipSchema = new Schema({
   description: { type: String, required: false },
   ethnicity: { type: String, required: false },
   educationLevel: { type: String, required: false },
-  // GRADE LEVEL
   grade: { type: String, required: false },
   gpa: {type: String, required: false },
 });

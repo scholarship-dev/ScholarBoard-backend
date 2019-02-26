@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const User = require("../../models/user")
 
-// ENDPOINT TO GET A SINGLE USER DATA
+// ENDPOINT TO GET A USER PROFILE
 router.get("/api/profile/:email", function(req, res){
 
   const email = req.params.email
