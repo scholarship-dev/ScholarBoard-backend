@@ -5,7 +5,7 @@ const User = require("../../models/user")
 
 
 // ENDPOINT TO SIGN UP THE USER
-router.get("/api/sign-up", function(req, res){
+router.post("/api/sign-up", function(req, res){
   // Grab and serve the sign up page
   const user = new User(req.body)
   user.save().then( (savedUser) => {
@@ -45,7 +45,7 @@ router.post("/api/sign-in", function(req, res){
 
 
 // ENDPOINT TO SIGN OUT THE USER
-router.post("/api/sign-out", function(req, res){
+router.delete("/api/sign-out", function(req, res){
 
   res.clearCookie("scToken")
   res.redirect("https://scholarboard.herokuapp.com/")
