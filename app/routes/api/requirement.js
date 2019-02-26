@@ -9,7 +9,6 @@ const router = express.Router();
 const MongoClient = require('mongodb').MongoClient
 
 // IMPORTS
-const Student = require('../../models/student');
 const Scholarship = require('../../models/scholarship');
 const tokenize = require("../../helpers/tokenize")
 
