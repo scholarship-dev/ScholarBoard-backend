@@ -3,24 +3,10 @@ const router = express.Router();
 const Scholarship = require('../../models/scholarship');
 
 
-// DUMMY USER DATA
-const current_user = {
-  name: "Medi Assumani",
-  ethnicity: "Hispanic",
-  gpa: 3.0,
-  dob: "March 14 1999",
-  educationLevel: "college",
-  grades: {
-    gpa: 3.5,
-    weightedGpa: 4.0
-  },
-};
-
-
-
-// ENDPOINT TO GET ALL SCHOLARSHIP THAT MATCH STUDENT 
+// ENDPOINT TO GET ALL SCHOLARSHIP THAT MATCH STUDENT
 router.get("/api/scholarships", function(req, res){
-  Scholarship.find({ $or: [ { gpa: { $lte: current_user.grades.gpa}}, { ethnicity: current_user.ethnicity}, {educationLevel: current_user.educationLevel} ] })
+  var currentUser = req.user
+  Scholarship.find({ $or: [ { gpa: { $lte: currentUser.gpa}}, { ethnicity: currentUser.ethnicity}, {educationLevel: currentUser.educationLevel} ] })
     .then( (scholarships) => {
       res.send(scholarships)
     })

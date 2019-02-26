@@ -12,7 +12,11 @@ const UserSchema = new Schema({
   firstname: { type: String, required: true},
   lastname: { type: String, required: true},
   email: { type: String, required: true },
-  password: { type: String, select: false }
+  password: { type: String, select: false },
+  gpa: { type: Number, required: true},
+  ethnicity: { type: String, required: true},
+  educationLevel: { type: String, required: false },
+  grade: { type: String, required: true },
 });
 
 // Class Method to save a user object
