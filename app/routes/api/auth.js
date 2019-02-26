@@ -23,7 +23,27 @@ router.get("/api/sign-up", function(req, res){
 
 // ENDPOINT TO SING IN THE USER
 router.post("/api/sign-in", function(req, res){
-  // sign in the user
+
+  const email = req.body.username
+  const password = req.body.password
+
+  User.findOne({ email }, " email password")
+    .then(user => {
+      if(!user.email){
+        return res.status(422).send({ message: "Email is required"})
+      }
+
+      if(!user.password){
+        return res.status(422)
+      }
+
+      const token =  jwt.sign({ _id: user._id, username: user.username}, process.env.SECRET,{ expiresIn: "60 days"})
+      res.cookie("scToken", token, { maxAge: 900000})
+      // redirect to dashboard instead dashboard
+      res.redirect("www.google.com")
+    }).catch( (error) => {
+      res.send(401).send({ message: "Email or Password is incorect"})
+    })
 })
 
 // ENDPOINT TO SIGNUP THE USER
