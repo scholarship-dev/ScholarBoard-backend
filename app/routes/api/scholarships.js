@@ -1,25 +1,32 @@
+/* eslint-disable max-len */
+
 const express = require('express');
+
 const router = express.Router();
 const Scholarship = require('../../models/scholarship');
 
 
-// ENDPOINT TO GET ALL SCHOLARSHIPS FROM THE DB
-router.get("/api/scholarships", function(req, res){
-  var currentUser = req.user
-  Scholarship.find()
-    .then( (scholarhips) => {
-      res.status(200).send(scholarhips)
+<<<<<<< HEAD
+// ENDPOINT TO GET ALL SCHOLARSHIP THAT MATCH STUDENT
+router.get('/api/scholarships', (req, res) => {
+  let currentUser = req.user;
+  Scholarship.find({ $or: [{ gpa: { $lte: currentUser.gpa } }, { ethnicity: currentUser.ethnicity }, { educationLevel: currentUser.educationLevel }] })
+    .then((scholarships) => {
+      res.send(scholarships)
     })
-})
+    .catch((err) => {
+      res.send(err);
+    });
+});
 
-// ENDPOINT TO GET A SINGLE SCHOLARSHIP FROM THE DB
-router.get("/api/scholarships/:id", function(req, res){
-  Scholarship.findById(req.params.id)
-    .then( (scholarship) => {
-      res.status(200).send(scholarship)
+// ENDPOINT TO GET A SINGLE SCHOLARSHIP
+router.get('/api/scholarships/:id', (req, res) => {
+  Scholarship.find( {_id: req.params.id })
+    .then((scholarship) => {
+      res.send(scholarship);
     })
-    .catch( (err) => {
-      res.status(200).send( {error: err} )
+    .catch((err) => {
+      throw err;
     })
 })
 
@@ -37,4 +44,4 @@ router.get('/scholarships/deadline/:dateYear/:dateMonth/:dateDay', (req, res) =>
 });
 
 
-module.exports = router
+module.exports = router;
