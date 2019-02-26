@@ -17,7 +17,7 @@ const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "J
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(bodyParser.json());
-app.use(checkAuth)
+// server.use(checkAuth);
 server.use(userRouter)
 server.use(requirementRouter);
 server.use(scholarhips);
