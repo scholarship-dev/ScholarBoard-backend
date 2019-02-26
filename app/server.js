@@ -1,6 +1,6 @@
 // IMPORT NEEDED MODULES AND CONTROLLERS
 require('dotenv').config();
-const port = process.env.PORT || 3000
+const port = process.env.PORT;
 const express = require('express');
 const bodyParser = require('body-parser');
 const server = express();
@@ -18,7 +18,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(bodyParser.json());
 // server.use(checkAuth);
-server.use(userRouter)
+server.use(userRouter); 
 server.use(requirementRouter);
 server.use(scholarhips);
 
