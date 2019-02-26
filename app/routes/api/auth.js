@@ -14,8 +14,9 @@ router.get("/api/sign-up", function(req, res){
   const user = new User(req.body)
   user.save().then( (savedUser) => {
     // create token
-    // set cookie
-    // redirect user
+    let token = jwt.sign({ _id: savedUser._id}, process.env.JWT_SECRET, { expiresIn: "60 days"})
+    res.cookie("scToken", token, { maxAge: 900000})
+    res.redirect("https://scholarboard.herokuapp.com/")
   })
 
 })

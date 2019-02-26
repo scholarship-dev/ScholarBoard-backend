@@ -22,8 +22,8 @@ let urls = [
 ];
 
 const nextLink = () => {
-  const theURL = urls.pop(); 
-  // scrape the web 
+  const theURL = urls.pop();
+  // scrape the web
   nightmare
     .goto(theURL)
     .evaluate(() => {
