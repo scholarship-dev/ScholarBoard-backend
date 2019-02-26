@@ -18,7 +18,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(bodyParser.json());
 // server.use(checkAuth);
-server.use(userRouter); 
+server.use(userRouter);
 server.use(requirementRouter);
 server.use(scholarhips);
 
