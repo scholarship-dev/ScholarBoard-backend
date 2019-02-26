@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-      assert = require("assert");
+const mongoose = require('mongoose');
+      assert = require('assert');
 
-const url = process.env.MONGODB_URI || "mongodb://localhost/ScholarBoardData1234";
+const url = process.env.MONGODB_URI || 'mongodb://localhost/ScholarBoardData1234';
 mongoose.Promise = global.Promise;
 mongoose.connect(
   url,
@@ -12,7 +12,7 @@ mongoose.connect(
   }
 );
 
-mongoose.connection.on("error", console.error.bind(console, "MongoDB connection Error:"));
-mongoose.set("debug", true);
+mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection Error:'));
+mongoose.set('debug', true);
 
 module.exports = mongoose.connection;
