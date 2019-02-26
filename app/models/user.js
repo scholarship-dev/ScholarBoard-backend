@@ -40,7 +40,7 @@ UserSchema.pre("save", function(next) {
   })
 })
 
-// Checks if the re-entered password mathes the former
+// Checks if the re-entered password matches the former
 UserSchema.methods.comparePassword = function(password, done) {
   bcrypt.compare(password, this.password, (err, isMatch) => {
     done(err, isMatch);
