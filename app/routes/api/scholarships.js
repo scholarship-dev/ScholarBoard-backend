@@ -5,19 +5,14 @@ const express = require('express');
 const router = express.Router();
 const Scholarship = require('../../models/scholarship');
 
-
-<<<<<<< HEAD
-// ENDPOINT TO GET ALL SCHOLARSHIP THAT MATCH STUDENT
-router.get('/api/scholarships', (req, res) => {
-  let currentUser = req.user;
-  Scholarship.find({ $or: [{ gpa: { $lte: currentUser.gpa } }, { ethnicity: currentUser.ethnicity }, { educationLevel: currentUser.educationLevel }] })
-    .then((scholarships) => {
-      res.send(scholarships)
+// ENDPOINT TO GET ALL SCHOLARSHIPS FROM THE DB
+router.get("/api/scholarships", function(req, res){
+  var currentUser = req.user
+  Scholarship.find()
+    .then( (scholarhips) => {
+      res.status(200).send(scholarhips)
     })
-    .catch((err) => {
-      res.send(err);
-    });
-});
+})
 
 // ENDPOINT TO GET A SINGLE SCHOLARSHIP
 router.get('/api/scholarships/:id', (req, res) => {
