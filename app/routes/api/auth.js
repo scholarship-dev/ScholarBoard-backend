@@ -16,6 +16,7 @@ router.get("/api/sign-up", function(req, res){
     // create token
     let token = jwt.sign({ _id: savedUser._id}, process.env.JWT_SECRET, { expiresIn: "60 days"})
     res.cookie("scToken", token, { maxAge: 900000})
+    // redirect to dashboard instead
     res.redirect("https://scholarboard.herokuapp.com/")
   })
 
@@ -53,7 +54,9 @@ router.post("/api/sign-up", function(req, res){
 
 // ENDPOINT TO SIGN OUT THE USER
 router.post("/api/sign-out", function(req, res){
-  // sign out the user
+
+  res.clearCookie("scToken")
+  res.redirect("https://scholarboard.herokuapp.com/")
 })
 
 
