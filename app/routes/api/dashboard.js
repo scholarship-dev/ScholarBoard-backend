@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const User = require("../../models/user")
+const Scholarship = require("../../models/scholarship")
 
 
 /* ENDPOINT TO GET:
@@ -9,6 +10,7 @@ const User = require("../../models/user")
 */
 router.get("/api/dashboard", function(req, res){
   var currentUser = req.user
+  console.log(currentUser);
   Scholarship.find({ $or: [ { gpa: { $lte: currentUser.gpa}}, { ethnicity: currentUser.ethnicity}, {educationLevel: currentUser.educationLevel} ] })
     .then( (scholarships) => {
       User.find({ email: currentUser.email })

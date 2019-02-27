@@ -6,7 +6,7 @@ const User = require("../../models/user")
 router.get("/api/profile/:email", function(req, res){
 
   const email = req.params.email
-  User.findOne({ email }).
+  User.findOne({ email })
     then( (user) => {
       res.status(200).send(user)
     }).catch( (error) => {
