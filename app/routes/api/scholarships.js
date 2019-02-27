@@ -27,7 +27,7 @@ router.get('/api/scholarships/:id', (req, res) => {
 
 // ENDPOINT TO DO A FUZZY SEARCH TO GET ALL SCHOLARSHIPS BY ETHNICITY
 router.get('/scholarships/race/:ethnicity', (req, res) => {
-  const ethnicity = new RegExp(req.params.ethnicity); // '/i'
+  const ethnicity = new RegExp(req.params.ethnicity); 
   Scholarship.find({ ethnicity })
     .then(scholarships => res.json(scholarships));
 });
