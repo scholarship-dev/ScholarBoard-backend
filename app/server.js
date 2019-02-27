@@ -31,10 +31,10 @@ server.use(cookieParser());
 server.use(checkAuth);
 
 // CUSTOM MOUNTING ROUTES
-server.use(authRouter);
-server.use(userRouter);
-server.use(scholarhips);
-server.use(dashboardRouter);
+server.use('/api', authRouter);
+server.use('/api', userRouter);
+server.use('/api', scholarhips);
+server.use('/api', dashboardRouter);
 
 
 // BOOTING UP PORT

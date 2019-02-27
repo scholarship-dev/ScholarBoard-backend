@@ -6,7 +6,7 @@ const router = express.Router();
 const User = require('../../models/user');
 
 // ENDPOINT TO GET A USER PROFILE
-router.get('/api/profile/:email', (req, res) => {
+router.get('/profile/:email', (req, res) => {
   const email = req.params.email;
   User.findOne({ email });
   then((user) => {

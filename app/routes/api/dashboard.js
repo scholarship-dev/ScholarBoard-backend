@@ -9,7 +9,7 @@ const Scholarship = require('../../models/scholarship')
     - SCHOLARSHIPS THAT MATCH THE STUDENT PROFILE
     - CURRENT USER DATA TO RENDER ON DASHBOARD
 */
-router.get('/api/dashboard', (req, res) => {
+router.get('/dashboard', (req, res) => {
   const currentUser = req.user
   console.log(currentUser);
   Scholarship.find({ $or: [ { gpa: { $lte: currentUser.gpa} }, { ethnicity: currentUser.ethnicity}, {educationLevel: currentUser.educationLevel} ] })

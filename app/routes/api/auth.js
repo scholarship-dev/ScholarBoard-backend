@@ -12,7 +12,7 @@ const User = require('../../models/user');
 
 
 // ENDPOINT TO SIGN UP THE USER
-router.post('/api/sign-up', (req, res) => {
+router.post('/sign-up', (req, res) => {
   // Grab and serve the sign up page
   const user = new User(req.body)
   user.save().then( (savedUser) => {
@@ -28,7 +28,7 @@ router.post('/api/sign-up', (req, res) => {
 })
 
 // ENDPOINT TO SING IN THE USER
-router.post('/api/sign-in', (req, res) => {
+router.post('/sign-in', (req, res) => {
   const userEmail = req.body.email;
   const userPassword = req.body.password;
 
@@ -48,7 +48,7 @@ router.post('/api/sign-in', (req, res) => {
 
 
 // ENDPOINT TO SIGN OUT THE USER
-router.delete('/api/sign-out', (req, res) => {
+router.delete('/sign-out', (req, res) => {
   res.clearCookie('scToken');
   res.redirect('https://scholarboard.herokuapp.com/');
 });
