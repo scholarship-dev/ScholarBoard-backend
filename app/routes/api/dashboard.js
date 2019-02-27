@@ -1,13 +1,13 @@
-const express = require("express")
+const express = require('express')
 const router = express.Router()
-const User = require("../../models/user")
+const User = require('../../models/user')
 
 
 /* ENDPOINT TO GET:
     - SCHOLARSHIPS THAT MATCH THE STUDENT PROFILE
     - CURRENT USER DATA TO RENDER ON DASHBOARD
 */
-router.get("/api/dashboard", function(req, res){
+router.get('/api/dashboard', function(req, res){
   var currentUser = req.user
   Scholarship.find({ $or: [ { gpa: { $lte: currentUser.gpa}}, { ethnicity: currentUser.ethnicity}, {educationLevel: currentUser.educationLevel} ] })
     .then( (scholarships) => {
