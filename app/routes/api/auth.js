@@ -1,52 +1,57 @@
-const jwt = require("jsonwebtoken")
-const express = require("express")
-const router = express.Router()
-const User = require("../../models/user")
+//
+// ─── AUTHENTICATION ROUTES ──────────────────────────────────────────────────────
+//
+
+/* eslint-disable no-underscore-dangle */
+
+const jwt = require('jsonwebtoken');
+const express = require('express');
+
+const router = express.Router();
+const User = require('../../models/user');
 
 
 // ENDPOINT TO SIGN UP THE USER
-router.post("/api/sign-up", function(req, res){
+router.post('/api/sign-up', (req, res) => {
   // Grab and serve the sign up page
   const user = new User(req.body)
   user.save().then( (savedUser) => {
 
-    let token = jwt.sign({ _id: savedUser._id}, "YItK3jZCII", { expiresIn: "60 days"})
-    console.log("Token is " + token);
-    res.cookie("scToken", token, { maxAge: 900000})
+    const token = jwt.sign({ _id: savedUser._id}, 'YItK3jZCII', { expiresIn: '60 days'} );
+    console.log('Token is ' + token);
+    res.cookie('scToken', token, { maxAge: 900000 });
     // redirect to dashboard instead
-    res.status(200).send({ user: savedUser})
-    // res.redirect("https://scholarboard.herokuapp.com/")
+    res.status(200).send({ user: savedUser} );
+    // res.redirect('https://scholarboard.herokuapp.com/')
   })
 
 })
 
 // ENDPOINT TO SING IN THE USER
-router.post("/api/sign-in", function(req, res){
+router.post('/api/sign-in', (req, res) => {
+  const userEmail = req.body.email;
+  const userPassword = req.body.password;
 
-  const userEmail = req.body.email
-  const userPassword = req.body.password
-
-  User.findOne({ email: userEmail})
-    .then(user => {
+  User.findOne({ email: userEmail })
+    .then((user) => {
       console.log(user);
-      if(!user){
-        return res.status(401).send({ message: "email or password is incorect"})
+      if (!user) {
+        return res.status(401).send({ message: 'email or password is incorect' });
       }
       //console.log(process.env.SECRET);
-      const token = jwt.sign({ _id: user._id }, "YItK3jZCII", { expiresIn: "60 days" });
-      return res.status(200).cookie('scToken', token, { maxAge: 900000 }).send({ message: "User fully logged in"})
-
-    }).catch( (error) => {
-      return res.send(401).send({ message: "Email or Password is incorect"})
-    })
-})
+      const token = jwt.sign({ _id: user._id }, 'YItK3jZCII', { expiresIn: '60 days' });
+      return res.status(200).cookie('scToken', token, { maxAge: 900000 }).send({ message: 'User fully logged in'})
+    }).catch((error) => {
+      return res.send(401).send({ message: 'Email or Password is incorect'})
+    });
+});
 
 
 // ENDPOINT TO SIGN OUT THE USER
-router.delete("/api/sign-out", function(req, res){
-  res.clearCookie("scToken")
-  res.redirect("https://scholarboard.herokuapp.com/")
-})
+router.delete('/api/sign-out', (req, res) => {
+  res.clearCookie('scToken');
+  res.redirect('https://scholarboard.herokuapp.com/');
+});
 
 
-module.exports = router
+module.exports = router;
