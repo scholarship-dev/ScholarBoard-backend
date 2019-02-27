@@ -1,6 +1,5 @@
 // MIDDLEWARE IMPORTS
 require('dotenv').load();
-const port = process.env.PORT || 3000;
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -39,6 +38,7 @@ server.use(dashboardRouter);
 
 
 // BOOTING UP PORT
+const port = process.env.PORT || 3000;
 server.listen(port);
 
 module.exports = server;
