@@ -18,15 +18,14 @@ const UserSchema = new Schema({
      match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
     },
   password: { type: String, select: true, trim: true},
-  gpa: { type: Number, required: false, trim: true},
-  ethnicity: { type: String, required: false, trim: true},
-  educationLevel: { type: String, required: false, trim: true},
-  grade: { type: String, required: false, trim: true}
+  gpa: { type: Number, required: true, trim: true},
+  ethnicity: { type: String, required: true, trim: true},
+  educationLevel: { type: String, required: true, trim: true},
+  grade: { type: String, required: true, trim: true}
 });
 
 // Class Method to save a user object
 UserSchema.pre('save', function(next) {
-
   // keeps track of the date account is created and updated
   const now = new Date()
   this.updatedAt = now
