@@ -20,8 +20,6 @@ require('./database/scholarboard-db');
 // INSTANCE OF EXPRESS
 const server = express();
 
-// const ethnicity_keywords = ['indigenous', 'white peope', 'African Americans', 'Jewish People', 'Asian people', 'Arabs', 'Native Americans', 'Black people', 'pacific islander', 'Irannian people', 'Native Hawaiians', 'Alaska Natives', 'Latino', 'Multiracial', 'Hispanic and Latino Americans', 'Mexicans', 'Pacific Islands Americans', 'Irish People']
-
 // SETTING UP MIDDLEWARES
 //server.use(checkAuth);
 server.use(bodyParser.urlencoded({ extended: true }));

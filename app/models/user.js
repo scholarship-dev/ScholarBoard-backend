@@ -9,14 +9,19 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   createdAt: { type: Date },
   updatedAt: { type: Date },
-  firstname: { type: String, required: true},
-  lastname: { type: String, required: true},
-  email: { type: String, required: true },
-  password: { type: String, select: false },
-  gpa: { type: Number, required: true},
-  ethnicity: { type: String, required: true},
-  educationLevel: { type: String, required: false },
-  grade: { type: String, required: true },
+  firstname: { type: String, required: false, trim: true},
+  lastname: { type: String, required: false, trim: true},
+  email: {
+     type: String, 
+     required: true, 
+     trim: true, 
+     match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+    },
+  password: { type: String, select: true, trim: true},
+  gpa: { type: Number, required: false, trim: true},
+  ethnicity: { type: String, required: false, trim: true},
+  educationLevel: { type: String, required: false, trim: true},
+  grade: { type: String, required: false, trim: true}
 });
 
 // Class Method to save a user object
