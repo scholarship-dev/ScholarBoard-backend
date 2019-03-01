@@ -29,7 +29,7 @@ router.get('/dashboard', (req, res) => {
   }).then((scholarships) => {
     User.find({ email: currentUser.email })
       .then((user) => {
-        res.status(200).send({ scholarhips });
+        res.status(200).send({ scholarhips, user });
       }).catch((error) => {
         res.status(400).send({ error });
       });
