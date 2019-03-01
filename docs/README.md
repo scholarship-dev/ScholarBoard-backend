@@ -10,6 +10,8 @@ Scholarboard is an authenticated REST API that serves the the Web and iOS client
 
 Scholarboard follows a RESTFull Architecture. Below are the available endpoints.
 
+#### Base URL : https://scholarboard-api.herokuapp.com/
+
 |       Verb          |      Endpoint        |      Description                           |
 | -------------       |:--------------------:| ------------------------------------------:|
 | GET                 | /api/scholarships                       |Get all scholarships from the DB         |

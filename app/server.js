@@ -21,7 +21,6 @@ require('./database/scholarboard-db');
 const server = express();
 
 // SETTING UP MIDDLEWARES
-//server.use(checkAuth);
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(bodyParser.json());
