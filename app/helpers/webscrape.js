@@ -26,7 +26,18 @@ let urls = [
   'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/5-strong-scholarship/',
   'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/acf-barnes-w-rose-jr-and-eva-rose-nichol-scholarship-program/',
   'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/acf-david-r-woodling-memorial-scholarship/',
-  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/acf-robby-baker-memorial-scholarship/'
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/acf-robby-baker-memorial-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/beta-gamma-recruitment-grant/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/betsy-niles-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/better-brothers-la-book-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/betty-harlan-memorial-art-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/beulah-frey-environmental-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/bev-granger-memorial-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/billy-smith-memorial-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/cameron-impact-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/catharine-lealtad-scholarships/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/cbc-spouses-education-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/charles-lee-anderson-memorial-scholarship/'
 ];
 
 const nextLink = () => {
