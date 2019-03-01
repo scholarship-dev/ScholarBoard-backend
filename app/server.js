@@ -1,36 +1,41 @@
-// IMPORT NEEDED MODULES AND CONTROLLERS
-require('dotenv').config();
+// MIDDLEWARE IMPORTS
+require('dotenv').load();
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
-const server = express();
+const cookieParser = require('cookie-parser');
+
+// CUSTOME MIDDLEWARE
+const checkAuth = require('./middleware/checkAuth');
+const checkUser = require('./middleware/checkUser');
+
+// IMPORTING ROUTES
 const authRouter = require('./routes/api/auth');
-const requirementRouter = require('./routes/api/requirement');
+const userRouter = require('./routes/api/users');
+const scholarhips = require('./routes/api/scholarships');
+const dashboardRouter = require('./routes/api/dashboard');
+
+// SETTING DB AND MONGOOSE CONNECTION
 require('./database/scholarboard-db');
-const ethnicity_keywords = ["indigenous", "white peope", "African Americans", "Jewish People", "Asian people", "Arabs", "Native Americans", "Black people", "pacific islander", "Irannian people", "Native Hawaiians", "Alaska Natives", "Latino", "Multiracial", "Hispanic and Latino Americans", "Mexicans", "Pacific Islands Americans", "Irish People"]
 
-
+// INSTANCE OF EXPRESS
+const server = express();
 
 // SETTING UP MIDDLEWARES
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(bodyParser.json());
-server.use(cors());
+server.use(cookieParser());
+server.use(checkAuth);
+
+// CUSTOM MOUNTING ROUTES
+server.use('/api', authRouter);
+server.use('/api', userRouter);
+server.use('/api', scholarhips);
+server.use('/api', dashboardRouter);
 
 
-// MOUNTING ROUTES TO API PATH
-// server.use('/api', indexRouter);
-// server.use('/api', authRouter);
-server.use(requirementRouter);
-// server.use('/api', studentRouter);
-
-server.get('/', (req,res) => {
-  console.log("medi??")
-  res.send("hi")
-})
-
-// PORT
-const port = 3000;
+// BOOTING UP PORT
+const port = process.env.PORT || 3000;
 server.listen(port);
 
 module.exports = server;
