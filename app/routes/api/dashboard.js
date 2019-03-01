@@ -11,6 +11,11 @@ let currentUser = {
   grade: 'senior'
 }
 
+// { gpa: { $lte: currentUser.gpa } },
+// { ethnicity: currentUser.ethnicity },
+// { educationLevel: currentUser.educationLevel },
+// { grade: currentUser.grade},
+
 /* ENDPOINT TO GET:
     - SCHOLARSHIPS THAT MATCH THE STUDENT PROFILE
     - CURRENT USER DATA TO RENDER ON DASHBOARD
@@ -20,12 +25,28 @@ router.get('/dashboard', (req, res) => {
   // const currentUser = dummyUser
   // { ethnicity: currentUser.ethnicity }, {educationLevel: currentUser.educationLevel}
   console.log(currentUser);
-  Scholarship.find({
-    $or: [
-      { gpa: { $lte: currentUser.gpa } },
-      { ethnicity: currentUser.ethnicity},
-      { educationLevel: currentUser.educationLevel },
-    ],
+  Scholarship.find({ 
+    $or: 
+      [ 
+        { $and: 
+         [ { gpa: { $lte: currentUser.gpa } },
+           { ethnicity: currentUser.ethnicity } ] },
+        { $and: 
+          [ { gpa: { $lte: currentUser.gpa } },
+            { educationLevel: currentUser.educationLevel } ] },
+        { $and: 
+          [ { gpa: { $lte: currentUser.gpa } },
+            { grade: currentUser.grade} ] },
+        { $and: 
+          [ { ethnicity: currentUser.ethnicity },
+            { educationLevel: currentUser.educationLevel } ] },
+        { $and: 
+          [ { ethnicity: currentUser.ethnicity },
+            { grade: currentUser.grade} ] },
+        { $and: 
+          [ { educationLevel: currentUser.educationLevel },
+            { grade: currentUser.grade} ] },
+      ] 
   }).then((scholarships) => {
     User.find({ email: currentUser.email })
       .then((user) => {
@@ -35,7 +56,7 @@ router.get('/dashboard', (req, res) => {
       });
   })
     .catch((error) => {
-      res.status(400).send({ error } );
+      res.status(400).send({ error });
     });
 });
 
