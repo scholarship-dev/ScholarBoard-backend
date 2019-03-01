@@ -38,7 +38,7 @@ router.post('/sign-in', (req, res) => {
       }
       
       const token = jwt.sign({ _id: user._id }, 'YItK3jZCII', { expiresIn: '60 days' });
-      return res.status(200).cookie('scToken', token, { maxAge: 900000 }).send({ message: 'User fully logged in'})
+      return res.status(200).cookie('scToken', token, { maxAge: 900000 }).json(user)
     }).catch((error) => {
       return res.send(401).send({ message: 'Email or Password is incorect'})
     });
