@@ -72,6 +72,6 @@ async function GetCharacter(req, res) {
 }
 
 module.exports = {
+  GetAllScholarships,
   MatchScholarship,
-  GetCharacter,
 };
