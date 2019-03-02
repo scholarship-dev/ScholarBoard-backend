@@ -1,6 +1,7 @@
-//----------------------------------------------------------------
-// This File defines the User Model and its Methods.
-//----------------------------------------------------------------
+//
+// ─── USER MODEL AND METHODS ─────────────────────────────────────────────────────
+//
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
