@@ -8,7 +8,7 @@ const parcel = require('../../middleware/asyncHandler');
 
 const router = express.Router();
 
-//  GET: ALL SCHOLARSHIPS
-router.get('/user/dashboard', parcel(controller.MatchScholarship));
+//  GET: ALL MATCHING
+router.get('/dashboard', parcel(controller.MatchScholarship));
 
 module.exports = router;

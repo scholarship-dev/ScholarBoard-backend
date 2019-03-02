@@ -6,4 +6,7 @@ const authRouter = require('./api-v1/auth');
 
 const router = express.Router();
 
+router.use('/scholarships', scholarshipRoutes);
+router.use('/users', userRoutes);
+
 module.exports = router;

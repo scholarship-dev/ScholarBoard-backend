@@ -9,15 +9,15 @@ const parcel = require('../../middleware/asyncHandler');
 const router = express.Router();
 
 //  GET: ALL SCHOLARSHIPS
-router.get('/scholarships', parcel(controller.GetAllScholarships));
+router.get('/', parcel(controller.GetAllScholarships));
 
 // GET: SPECIFIC SCHOLARSHIP
-router.get('/scholarships/:id', parcel(controller.GetScholarship));
+router.get('/:id', parcel(controller.GetScholarship));
 
 // GET: SCHOLARSHIP BY ETHNICITY
-router.get('/scholarships/race/:ethnicity', parcel(controller.GetScholarshipEthnicity));
+router.get('/race/:ethnicity', parcel(controller.GetScholarshipEthnicity));
 
 // GET: SCHOLARSHIP BY DATE
-router.get('/scholarships/deadline/:year/:month/:day', parcel(controller.GetScholarshipDate));
+router.get('/deadline/:year/:month/:day', parcel(controller.GetScholarshipDate));
 
 module.exports = router;
