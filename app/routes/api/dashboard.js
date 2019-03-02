@@ -25,29 +25,7 @@ router.get('/dashboard', (req, res) => {
   // const currentUser = dummyUser
   // { ethnicity: currentUser.ethnicity }, {educationLevel: currentUser.educationLevel}
   console.log(currentUser);
-  Scholarship.find({ 
-    $or: 
-      [ 
-        { $and: 
-         [ { gpa: { $lte: currentUser.gpa } },
-           { ethnicity: currentUser.ethnicity } ] },
-        { $and: 
-          [ { gpa: { $lte: currentUser.gpa } },
-            { educationLevel: currentUser.educationLevel } ] },
-        { $and: 
-          [ { gpa: { $lte: currentUser.gpa } },
-            { grade: currentUser.grade} ] },
-        { $and: 
-          [ { ethnicity: currentUser.ethnicity },
-            { educationLevel: currentUser.educationLevel } ] },
-        { $and: 
-          [ { ethnicity: currentUser.ethnicity },
-            { grade: currentUser.grade} ] },
-        { $and: 
-          [ { educationLevel: currentUser.educationLevel },
-            { grade: currentUser.grade} ] },
-      ] 
-  }).then((scholarships) => {
+  Scholarship.find({ gpa: { $lte: currentUser.gpa } }).then((scholarships) => {
     User.find({ email: currentUser.email })
       .then((user) => {
         res.status(200).send({ scholarhips, user });
@@ -62,3 +40,29 @@ router.get('/dashboard', (req, res) => {
 
 
 module.exports = router;
+
+// $or: 
+//       [ 
+//         // ALL PAIRS
+//         { $and: 
+//          [ { gpa: { $lte: currentUser.gpa } },
+//            { ethnicity: currentUser.ethnicity } ] },
+//         { $and: 
+//           [ { gpa: { $lte: currentUser.gpa } },
+//             { educationLevel: currentUser.educationLevel } ] },
+//         { $and: 
+//           [ { gpa: { $lte: currentUser.gpa } },
+//             { grade: currentUser.grade} ] },
+//         { $and: 
+//           [ { ethnicity: currentUser.ethnicity },
+//             { educationLevel: currentUser.educationLevel } ] },
+//         { $and: 
+//           [ { ethnicity: currentUser.ethnicity },
+//             { grade: currentUser.grade} ] },
+//         { $and: 
+//           [ { educationLevel: currentUser.educationLevel },
+//             { grade: currentUser.grade} ] },
+//         // ALL TRIPLETS
+
+//         // ALL FOUR
+//       ] 

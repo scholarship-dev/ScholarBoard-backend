@@ -12,11 +12,11 @@ const UserSchema = new Schema({
   firstname: { type: String, required: false, trim: true},
   lastname: { type: String, required: false, trim: true},
   email: {
-     type: String, 
-     required: true, 
-     trim: true, 
-     match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
-    },
+    type: String, 
+    required: true, 
+    trim: true, 
+    match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+  },
   password: { type: String, select: true, trim: true},
   gpa: { type: Number, required: true, trim: true},
   ethnicity: { type: String, required: true, trim: true},
