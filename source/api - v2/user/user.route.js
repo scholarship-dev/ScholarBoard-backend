@@ -9,6 +9,6 @@ const parcel = require('../../middleware/asyncHandler');
 const router = express.Router();
 
 //  GET: ALL SCHOLARSHIPS
-router.get('/dashboard', parcel(controller.MatchScholarship));
+router.get('/user/dashboard', parcel(controller.MatchScholarship));
 
 module.exports = router;
