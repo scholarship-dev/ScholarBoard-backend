@@ -18,7 +18,7 @@ This repository contains the source code of the scholarboard backend that suppor
 
 Scholarboard follows a RESTFull Architecture. Below are the available endpoints.
 
-#### Base URL : https://scholarboard-api.herokuapp.com/
+#### Base URL : https://cors.io/?https://scholarboard-api.herokuapp.com
 
 |       Verb          |      Endpoint        |      Description                           |
 | -------------       |:--------------------:| ------------------------------------------:|

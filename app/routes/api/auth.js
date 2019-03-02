@@ -20,9 +20,7 @@ router.post('/sign-up', (req, res) => {
     const token = jwt.sign({ _id: savedUser._id}, 'YItK3jZCII', { expiresIn: '60 days'} );
     console.log('Token is ' + token);
     res.cookie('scToken', token, { maxAge: 900000 });
-    // redirect to dashboard instead
     res.status(200).send({ user: savedUser} );
-    // res.redirect('https://scholarboard.herokuapp.com/')
   })
 
 })
@@ -38,9 +36,9 @@ router.post('/sign-in', (req, res) => {
       if (!user) {
         return res.status(401).send({ message: 'email or password is incorect' });
       }
-      //console.log(process.env.SECRET);
+      
       const token = jwt.sign({ _id: user._id }, 'YItK3jZCII', { expiresIn: '60 days' });
-      return res.status(200).cookie('scToken', token, { maxAge: 900000 }).send({ message: 'User fully logged in'})
+      return res.status(200).cookie('scToken', token, { maxAge: 900000 }).json(user)
     }).catch((error) => {
       return res.send(401).send({ message: 'Email or Password is incorect'})
     });
