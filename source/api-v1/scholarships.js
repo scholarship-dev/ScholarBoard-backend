@@ -6,7 +6,6 @@ const router = express.Router();
 const Scholarship = require('../../api/scholarship/scholarship.model');
 
 // ENDPOINT TO GET ALL SCHOLARSHIPS FROM THE DB
-// DONE IN ASYNC
 router.get('/scholarships', (req, res) => {
   //var currentUser = req.user
   Scholarship.find()

@@ -60,6 +60,9 @@ async function MatchScholarship(req, res) {
   return res.status(200).send({ scholarships, user });
 }
 
+// GET USER PROFILE
+async function
+
 module.exports = {
   MatchScholarship,
 };
