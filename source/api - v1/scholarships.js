@@ -17,6 +17,8 @@ router.get('/scholarships', (req, res) => {
     });
 });
 
+router.get('/scholarships', scholarshipController.Index)
+
 // ENDPOINT TO GET A SINGLE SCHOLARSHIP
 router.get('/scholarships/:id', (req, res) => {
   Scholarship.find({_id: req.params.id })

@@ -9,6 +9,11 @@ async function GetAllScholarships(req, res){
   res.send(await Scholarship.find())
 }
 
+async function Index(req, res) {
+  const scholarships = await Scholarship.find();
+  res.send(scholarships)
+}
+
 // GET A SPECIFIC SCHOLARSHIP
 async function GetScholarship(req, res){
   res.send( await Scholarship.find())

@@ -8,7 +8,7 @@ const User = require('../user/user.model');
 // RETURNS ALL MATCHING SCHOLARSHIPS ACCORDING TO USER DATA
 async function MatchScholarship(req, res) {
   const currentUser = req.user;
-  res.send(await Scholarship.find({
+  const scholarships = await Scholarship.find({ 
     $or: 
       [ 
         // ALL PAIRS
@@ -54,15 +54,10 @@ async function MatchScholarship(req, res) {
             { educationLevel: currentUser.educationLevel },
             { grade: currentUser.grade} ] },
       ] 
-  }).then((scholarships) => {
-    User.find({ email: currentUser.email })
-      .then((user) => {
-        res.status(200).send({ scholarships, user });
-      }).catch((error) => {
-        res.status(400).send({ error });
-        console.log(error);
-      });
-  }));
+  })
+
+  const user = await User.findOne({ email: currentUser.email });
+  return res.status(200).send({ scholarships, user });
 }
 
 module.exports = {

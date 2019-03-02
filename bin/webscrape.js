@@ -11,10 +11,10 @@ const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
 const cheerio = require('cheerio');
 const Scholarship = require('../models/scholarship');
-require('../database/scholarboard-db');
+require('../source/database/scholarboard-db');
 
 // WEBSCRAPE HELPER FUNCTIONS
-const helper = require('./tokenize');
+const helper = require('../source/util/tokenize');
 
 let urls = [
   'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/aauw-return-to-learning-scholarships',
