@@ -4,7 +4,7 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const Schema = mongoose.Schema;
+const { Schema }= mongoose;
 
 // The Schema defined with needed properties to be stored in Mongo
 const UserSchema = new Schema({
