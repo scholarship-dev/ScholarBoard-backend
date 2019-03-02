@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 const express = require('express');
 const router = express.Router();
-const User = require('../../models/user');
-const Scholarship = require('../../models/scholarship');
+const User = require('../../api/student/user');
+const Scholarship = require('../../api/scholarship/scholarship.model');
 
 /* ENDPOINT TO GET:
     - SCHOLARSHIPS THAT MATCH THE STUDENT PROFILE
