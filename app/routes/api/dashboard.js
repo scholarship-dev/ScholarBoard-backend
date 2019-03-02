@@ -7,8 +7,10 @@ const Scholarship = require('../../models/scholarship');
 /* ENDPOINT TO GET:
     - SCHOLARSHIPS THAT MATCH THE STUDENT PROFILE
     - CURRENT USER DATA TO RENDER ON DASHBOARD
-    - TESTED
+    - TESTED 
 */
+
+// HAS TO BE SET UP THIS WAY AS THE 4 SCHOLARSHIP REQUIREMENTS ARE NOT NECESSARY
 router.get('/dashboard', (req, res) => {
   const currentUser = req.user
   console.log(currentUser);
