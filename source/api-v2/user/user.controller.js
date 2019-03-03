@@ -2,7 +2,7 @@
 // ─── USER CONTROLLER ────────────────────────────────────────────────────────────
 //
 
-const Scholarship = require('./scholarship.model');
+const Scholarship = require('../scholarship/scholarship.model');
 const User = require('../user/user.model');
 
 // RETURNS ALL MATCHING SCHOLARSHIPS ACCORDING TO USER DATA

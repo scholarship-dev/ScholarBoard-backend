@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 
 const router = express.Router();
-const User = require('../../models/user');
+const User = require('../user/user.model');
 
 
 // ENDPOINT TO SIGN UP THE USER
