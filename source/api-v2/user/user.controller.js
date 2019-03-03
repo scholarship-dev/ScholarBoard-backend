@@ -16,7 +16,7 @@ async function MatchScholarship(req, res) {
          [ { gpa: { $lte: currentUser.gpa } },
            { ethnicity: currentUser.ethnicity } ] },
         { $and: 
-          [ { gpa: { $lte: currentUser.gpa } },
+          [ { gpa: { $lte: currentUser.gp!a } },
             { educationLevel: currentUser.educationLevel } ] },
         { $and: 
           [ { gpa: { $lte: currentUser.gpa } },
