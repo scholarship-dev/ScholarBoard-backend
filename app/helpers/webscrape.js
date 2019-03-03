@@ -49,8 +49,8 @@ const nextLink = () => {
       // SAVE TEXT AS PROPERTY OF RESULT OBJ
       const result_obj = {
         name: cleanData[0],
-        deadline: helper.extractDeadline(scholDeadline),
-        funding: cleanData[2],
+        deadline: helper.extractDeadline(scholFunding),
+        funding: helper.extractFunding(scholFunding),
         contactInfo: cleanData[3],
         description: cleanData[4],
         grade: helper.extractGrade(scholRequirements),

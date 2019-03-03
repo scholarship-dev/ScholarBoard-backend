@@ -73,23 +73,36 @@ module.exports = {
 
     /* Extract the deadline from the scholarship's description
     @param - text_body : The text body that contains the deadline
-    @return - deadline : the date object that represents the deadline
+    @return - deadline : the scholarship the deadline
   */
   extractDeadline: (textBody) => {
 
-    let deadline
+    let deadline;
     const new_str = textBody.replace(/\s/g, '');
 
     date_keywords.forEach(month => {
       if(new_str.includes(month)){
         const start_index = new_str.indexOf(month);
-        const end_index = (start_index + month.length);
-        deadline = new_str.substring(start_index, end_index);
+        deadline = new_str.substring(start_index);
       };
     });
 
-    return deadline
+    return deadline;
   },
+
+
+      /* Extract the funding from the scholarship's description
+    @param - text_body : The text body that contains the deadline
+    @return - funding : the scholarship funding
+  */
+ extractFunding: (textBody) => {
+
+  const regex = /[0-9]+,[0-9]{3}/
+  let funding = textBody.match(regex)
+
+  return funding[0]
+},
+
 
   /* Extract the education leve(s) requirements from the scholarship's description
     @param - text_body : The scholarship description

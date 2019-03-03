@@ -48,7 +48,7 @@ router.post('/sign-in', (req, res) => {
 // ENDPOINT TO SIGN OUT THE USER
 router.delete('/sign-out', (req, res) => {
   res.clearCookie('scToken');
-  res.redirect('https://scholarboard.herokuapp.com/');
+  res.send(200).json({ message: "user logged out"})
 });
 
 
