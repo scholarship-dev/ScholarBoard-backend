@@ -25,7 +25,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(bodyParser.json());
 server.use(cookieParser());
-server.use(checkAuth);
+// server.use(checkAuth);
 
 // CUSTOM MOUNTING ROUTES
 server.use('/api', authRouter);

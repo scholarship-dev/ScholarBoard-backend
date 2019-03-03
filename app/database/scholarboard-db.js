@@ -9,6 +9,7 @@ mongoose.connect(
   function(err, db) {
     assert.equal(null, err);
     // db.close(); turn on for testing
+    console.log(err);
   }
 );
 
