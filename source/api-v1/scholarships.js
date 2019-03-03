@@ -3,27 +3,29 @@
 const express = require('express');
 
 const router = express.Router();
-const Scholarship = require('../../models/scholarship');
+const Scholarship = require('../../api/scholarship/scholarship.model');
 
 // ENDPOINT TO GET ALL SCHOLARSHIPS FROM THE DB
-router.get('/api/scholarships', function(req, res){
-  var currentUser = req.user
+router.get('/scholarships', (req, res) => {
+  //var currentUser = req.user
   Scholarship.find()
-    .then( (scholarhips) => {
-      res.status(200).send(scholarhips)
-    })
-})
+    .then((scholarhips) => {
+      res.status(200).send(scholarhips);
+    }).catch((error) => {
+      res.send(400).send({ error });
+    });
+});
 
 // ENDPOINT TO GET A SINGLE SCHOLARSHIP
-router.get('/api/scholarships/:id', (req, res) => {
-  Scholarship.find( {_id: req.params.id })
+router.get('/scholarships/:id', (req, res) => {
+  Scholarship.find({_id: req.params.id })
     .then((scholarship) => {
       res.send(scholarship);
     })
     .catch((err) => {
       throw err;
-    })
-})
+    });
+});
 
 // ENDPOINT TO DO A FUZZY SEARCH TO GET ALL SCHOLARSHIPS BY ETHNICITY
 router.get('/scholarships/race/:ethnicity', (req, res) => {

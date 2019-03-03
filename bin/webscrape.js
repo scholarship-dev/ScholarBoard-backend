@@ -11,17 +11,33 @@ const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
 const cheerio = require('cheerio');
 const Scholarship = require('../models/scholarship');
-require('../database/scholarboard-db');
+require('../source/database/scholarboard-db');
 
 // WEBSCRAPE HELPER FUNCTIONS
-const helper = require('./tokenize');
+const helper = require('../source/util/tokenize');
 
 let urls = [
   'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/aauw-return-to-learning-scholarships',
   'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/abc-humane-wildlife-control-and-prevention-inc-academic-scholarship',
   'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/accounting-and-financial-womens-alliance-scholarship-bellevue-chapter',
   'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/acf-barnes-w-rose-jr-and-eva-rose-nichol-scholarship-program',
-  'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/acf-trythall-family-scholarship-for-excellence-in-continuing-education'
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/acf-trythall-family-scholarship-for-excellence-in-continuing-education',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/amtie-scholarships/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/5-strong-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/acf-barnes-w-rose-jr-and-eva-rose-nichol-scholarship-program/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/acf-david-r-woodling-memorial-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/acf-robby-baker-memorial-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/beta-gamma-recruitment-grant/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/betsy-niles-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/better-brothers-la-book-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/betty-harlan-memorial-art-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/beulah-frey-environmental-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/bev-granger-memorial-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/billy-smith-memorial-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/cameron-impact-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/catharine-lealtad-scholarships/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/cbc-spouses-education-scholarship/',
+  'https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-grade-level/high-school-scholarships/charles-lee-anderson-memorial-scholarship/'
 ];
 
 const nextLink = () => {

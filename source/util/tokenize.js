@@ -9,7 +9,7 @@
 const ethnicity_keywords = ['Indigenous', 'Hispanic', 'Latino', 'Latina', 'White peope', 'African Americans', 'Jewish People', 'Asian people', 'Arabs', 'Native Americans', 'Black people', 'pacific islander', 'Irannian people', 'Native Hawaiians', 'Alaska Natives', 'Latino', 'Multiracial', 'Hispanic and Latino Americans', 'Mexicans', 'Pacific Islands Americans', 'Irish People'];
 const grade_keywords = ['freshman', 'sophomore', 'junior', 'senior'];
 const education_level_keywords = ['high school', 'college', 'undergrad', 'undergraduate', 'university'];
-const gpa_keywords = ['2.0', '2.5', '3.0', '3.5', '4.0'];
+const gpa_keywords = ['2.0','2.3','2.4','2.5','2.6','2.7','2.8','2.9', '3.0', '3.5','3.6','3.7','3.8','3.9','4.0'];
 
 // IMPORTS
 const moment = require('moment');
@@ -93,11 +93,11 @@ module.exports = {
   extractGPA: (text_body) => {
     const new_str = text_body.replace(/\s/g, '');
     let target_gpa
-    // Fileter 1 : Checks if the gpa is required at all for this scholarship
+    // Filter 1 : Checks if the gpa is required at all for this scholarship
     if ((new_str.includes('GPA') == false) && new_str.includes('gpa') == false) {
       return null;
     }
-    // Fileter 2 : Check if key gpa numbers are in the requirements
+    // Filter 2 : Check if key gpa numbers are in the requirements
     gpa_keywords.forEach((gpa) => {
       // We only extract the GPA and avoid the 4.0 since it's just a scale
       if (new_str.includes(gpa) && gpa != '4.0') {
