@@ -113,7 +113,9 @@ module.exports = {
     let eduLevel = [];
     education_level_keywords.forEach((element) => {
       if (text_body.includes(element)) {
-        eduLevel.push(element);
+        if (!eduLevel.includes(element)){
+          eduLevel.push(element);
+        }
       }
     });
     return eduLevel;
