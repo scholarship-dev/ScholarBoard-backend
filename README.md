@@ -22,7 +22,7 @@ Scholarboard follows a RESTFull Architecture. Below are the available endpoints.
 
 | Verb                | Endpoint                                         | Description                       |
 | -------------       |:------------------------------------------------:| --------------------------------: |
-| GET                 | /api/scholarships                                |Get all scholarships from the DB   |
+| GET                 | /api/scholarships                                |Get all scholarships               |
 | GET                 | /api/scholarships/:id                            |Get a specific scholarship         |
 | GET                 | /api/scholarships/race/:ethnicity                |Get scholarship by ehtnicity       |
 | GET                 | /api/scholarships/deadline/:year/:month/:day     |Get scholarship by date            |
