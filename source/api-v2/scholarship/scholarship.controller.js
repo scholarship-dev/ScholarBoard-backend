@@ -19,13 +19,13 @@ async function GetScholarship(req, res) {
 // GET SCHOLARSHIP BY ETHNICITY
 async function GetScholarshipEthnicity(req, res) {
   const ethnicity = new RegExp(req.params.ethnicity); // '/i'
-  const scholarships = Scholarship.find({ ethnicity })
+  const scholarships = await Scholarship.find({ ethnicity })
   res.send(scholarships);
 }
 
 // GET SCHOLARSHIP BY DATE
 async function GetScholarshipDate(req, res) {
-  const scholarships = Scholarship.find({deadline: {$gte: new Date(`${req.params.year  }-${  req.params.month  }-${  req.params.day}`)}})
+  const scholarships = await Scholarship.find({deadline: {$gte: new Date(`${req.params.year  }-${  req.params.month  }-${  req.params.day}`)}})
   res.send(scholarships);
 }
 
