@@ -44,15 +44,15 @@ const nextLink = () => {
       const scholRequirements = $('#ulScholDetails li.scholdescrip div').text();
 
       // Cleaning up scrapped data. The ORDER OF APPENDING TO ARRAY MATTERS!!
-      const clean_data = helper.cleanTextBody([scholName, scholDeadline, scholFunding, scholContact, scholRequirements]);
-
+      const cleanData = helper.cleanTextBody([scholName, scholDeadline, scholFunding, scholContact, scholRequirements]);
+      //const cleanDealineDate = helper.dateFormat(cleanData[1])
       // SAVE TEXT AS PROPERTY OF RESULT OBJ
       const result_obj = {
-        name: clean_data[0],
-        deadline: new Date(helper.dateFormat(clean_data[1])),
-        funding: clean_data[2],
-        contactInfo: clean_data[3],
-        description: clean_data[4],
+        name: cleanData[0],
+        deadline: helper.extractDeadline(scholDeadline),
+        funding: cleanData[2],
+        contactInfo: cleanData[3],
+        description: cleanData[4],
         grade: helper.extractGrade(scholRequirements),
         ethnicity: helper.extractEthnicity(scholRequirements),
         educationLevel: helper.extractEducationLevel(scholRequirements),

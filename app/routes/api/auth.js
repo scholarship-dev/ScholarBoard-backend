@@ -17,7 +17,7 @@ router.post('/sign-up', (req, res) => {
   const user = new User(req.body)
   user.save().then( (savedUser) => {
 
-    const token = jwt.sign({ _id: savedUser._id}, 'YItK3jZCII', { expiresIn: '60 days'} );
+    const token = jwt.sign({ _id: savedUser._id}, process.env.JWT_SECRET, { expiresIn: '60 days'} );
     console.log('Token is ' + token);
     res.cookie('scToken', token, { maxAge: 900000 });
     res.status(200).send({ user: savedUser} );
@@ -37,10 +37,10 @@ router.post('/sign-in', (req, res) => {
         return res.status(401).send({ message: 'email or password is incorect' });
       }
       
-      const token = jwt.sign({ _id: user._id }, 'YItK3jZCII', { expiresIn: '60 days' });
+      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '60 days' });
       return res.status(200).cookie('scToken', token, { maxAge: 900000 }).json(user)
     }).catch((error) => {
-      return res.send(401).send({ message: 'Email or Password is incorect'})
+      return res.send(401).send(error)
     });
 });
 

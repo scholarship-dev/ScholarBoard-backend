@@ -10,6 +10,7 @@ const ethnicity_keywords = ['Indigenous', 'Hispanic', 'Latino', 'Latina', 'White
 const grade_keywords = ['freshman', 'sophomore', 'junior', 'senior'];
 const education_level_keywords = ['high school', 'college', 'undergrad', 'undergraduate', 'university'];
 const gpa_keywords = ['2.0','2.3','2.4','2.5','2.6','2.7','2.8','2.9', '3.0', '3.5','3.6','3.7','3.8','3.9','4.0'];
+const date_keywords = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 // IMPORTS
 const moment = require('moment');
@@ -68,6 +69,26 @@ module.exports = {
       }
     });
     return grades;
+  },
+
+    /* Extract the deadline from the scholarship's description
+    @param - text_body : The text body that contains the deadline
+    @return - deadline : the date object that represents the deadline
+  */
+  extractDeadline: (textBody) => {
+
+    let deadline
+    const new_str = textBody.replace(/\s/g, '');
+
+    date_keywords.forEach(month => {
+      if(new_str.includes(month)){
+        const start_index = new_str.indexOf(month);
+        const end_index = (start_index + month.length);
+        deadline = new_str.substring(start_index, end_index);
+      };
+    });
+
+    return deadline
   },
 
   /* Extract the education leve(s) requirements from the scholarship's description
