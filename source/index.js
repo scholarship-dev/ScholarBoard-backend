@@ -8,6 +8,6 @@ const app = require('./config/express');
 mongoose.Promise = Promise;
 
 //  eslint-disable-next-line
-app.listen(process.env.port, () => console.log(`server up and running on port ${process.env.port}`))
+app.listen(process.env.PORT, () => console.log(`server up and running on port ${process.env.PORT}`))
 
 module.export = app;

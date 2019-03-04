@@ -26,8 +26,8 @@ Scholarboard follows a RESTFull Architecture. Below are the available endpoints.
 | GET                 | /api/scholarships/:id                            |Get a specific scholarship         |
 | GET                 | /api/scholarships/race/:ethnicity                |Get scholarship by ehtnicity       |
 | GET                 | /api/scholarships/deadline/:year/:month/:day     |Get scholarship by date            |
-| GET                 | /api/user/dashboard                              |Get all matching scholarships      |
-| GET                 | /api/user/profile/:email                         |Get the user account profile       |
+| GET                 | /api/users/dashboard                             |Get all matching scholarships      |
+| GET                 | /api/users/profile/:email                        |Get the user account profile       |
 | POST                | /api/sign-up                                     |Sign up a user                     |
 | POST                | /api/sign-in                                     |Sign in a user                     |
 | DELETE              | /api/sign-out                                    |Sign out a user                    |

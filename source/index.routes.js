@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.use('/scholarships', scholarshipRoutes);
 router.use('/users', userRoutes);
-router.use(authRouter);
+// router.use(authRouter);
 
 module.exports = router;
