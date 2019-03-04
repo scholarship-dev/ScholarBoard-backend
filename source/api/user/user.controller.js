@@ -63,8 +63,8 @@ async function MatchScholarship(req, res) {
 
 // GET USER PROFILE
 async function GetProfile(req, res) {
-  const email = req.params.email;
-  const user = User.findOne({email})
+  const { email } = req.params;
+  const user = User.findOne({ email });
   res.send(user);
 }
 
