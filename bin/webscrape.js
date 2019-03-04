@@ -6,11 +6,12 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
 /* eslint-disable func-names */
+
 require('dotenv').config()
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
 const cheerio = require('cheerio');
-const Scholarship = require('../models/scholarship');
+const Scholarship = require('../source/api/scholarship/scholarship.model');
 require('../source/database/scholarboard-db');
 
 // WEBSCRAPE HELPER FUNCTIONS
