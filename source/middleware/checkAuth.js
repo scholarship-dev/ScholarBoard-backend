@@ -4,12 +4,11 @@ const jwt = require('jsonwebtoken');
 const checkAuth = (request, response, next) => {
   if (typeof request.cookies.scToken === 'undefined' || request.cookies.scToken === null) {
     request.user = null;
-    console.log('user not authenticated');
   } else {
+    // Decode the token and send the current user object in the req body
     const token = request.cookies.scToken;
     const decodedToken = jwt.decode(token, { complete: true }) || {};
     request.user = decodedToken.payload;
-    console.log('user fully authenticated');
   }
 
   next();

@@ -36,27 +36,31 @@ router.post('/sign-in', (req, res) => {
 
   User.findOne({ email: userEmail })
     .then((user) => {
+      // send an authorized code if wrong credentials provided
       if (!user) {
-        res.status(401).send({ message: 'email or password is incorect' })
-      }
+        console.log("inside !user");
+        
+        res.sendStatus(401)
+      } else {
+                // send an authorized code if password does not match
+        user.comparePassword(userPassword, (err, isMatch) => {
+          if(!isMatch) {
+            console.log('not matched')
+            return res.sendStatus(401)
+          } else {
 
-      user.comparePassword(password, (err, isMatch) => {
-        if(!isMatch) {
-          console.log('is no match');
-          
-          res.status(401).send({ message: 'email or password is incorect' })
-        } else {
-          console.log("is match baby");
-          
-          // create token and send it as cookie
-          const token = jwt.sign({ _id: user._id, email: savedUser.email, username: savedUser.username }, process.env.JWT_SECRET, { expiresIn: '60 days' })
-          res.status(200).cookie('SUToken', token, { maxAge: 900000 })
-        }
-      }).catch( (err) => {
-        res.status(401).send(err)
-      })
-    }).catch((error) => {
-      return res.status(401).send(error)
+            // create token and send it as cookie          
+            const token = jwt.sign({ _id: user._id, email: user.email, username: user.username }, process.env.JWT_SECRET, { expiresIn: '60 days' })
+            console.log(user);
+            
+            res.cookie('SUToken', token, { maxAge: 900000 })
+            return res.sendStatus(200)
+          }
+        })
+      }
+    }).catch( (error) => {
+      console.log("inside catch of findOne", error);
+      return res.sendStatus(401)
     });
 });
 
