@@ -3,7 +3,6 @@
 //
 
 const express = require('express');
-const express = require('express');
 const cors = require("cors")
 const corsOptions = { origin: 'https://scholarboard.herokuapp.com/'}
 const controller = require('./user.controller');
