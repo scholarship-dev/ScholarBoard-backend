@@ -2,13 +2,13 @@
   "name": "scholarship_api",
   "version": "1.0.0",
   "description": "A scholarship API that will match students will scholarships they meet the requirements for.",
-  "main": "server.js",
+  "main": "node source/index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node source/index.js"
   },
   "repository": {
     "type": "git",
