@@ -21,7 +21,7 @@ router.post('/sign-up', (req, res) => {
         expiresIn: "60 days"
       });
 
-      res.sendStatus(200).cookie("SUToken", token, {maxAge: 900000})
+      res.sendStatus(200).cookie("scToken", token, {maxAge: 900000})
     }).catch( (error) => {
       response.status(400).json({ "error" : error})
     })
@@ -38,28 +38,22 @@ router.post('/sign-in', (req, res) => {
     .then((user) => {
       // send an authorized code if wrong credentials provided
       if (!user) {
-        console.log("inside !user");
-        
         res.sendStatus(401)
       } else {
                 // send an authorized code if password does not match
         user.comparePassword(userPassword, (err, isMatch) => {
           if(!isMatch) {
-            console.log('not matched')
             return res.sendStatus(401)
           } else {
 
             // create token and send it as cookie          
             const token = jwt.sign({ _id: user._id, email: user.email, username: user.username }, process.env.JWT_SECRET, { expiresIn: '60 days' })
-            console.log(user);
-            
-            res.cookie('SUToken', token, { maxAge: 900000 })
+            res.cookie('scToken', token, { maxAge: 900000 })
             return res.sendStatus(200)
           }
         })
       }
     }).catch( (error) => {
-      console.log("inside catch of findOne", error);
       return res.sendStatus(401)
     });
 });

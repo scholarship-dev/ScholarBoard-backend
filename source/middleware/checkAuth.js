@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 
 // Constantly checks if the user is Autheticated
 const checkAuth = (request, response, next) => {
+  
   if (typeof request.cookies.scToken === 'undefined' || request.cookies.scToken === null) {
     request.user = null;
   } else {
