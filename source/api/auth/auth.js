@@ -6,13 +6,15 @@
 
 const jwt = require('jsonwebtoken');
 const express = require('express');
+const cors = require("cors")
+const corsOptions = { origin: 'https://scholarboard.herokuapp.com/'}
 
 const router = express.Router();
 const User = require('../user/user.model');
 
 
 // ENDPOINT TO SIGN UP THE USER
-router.post('/sign-up', (req, res) => {
+router.post('/sign-up', cors(corsOptions), (req, res) => {
 
   const user = new User(req.body)
   user.save()
@@ -29,7 +31,7 @@ router.post('/sign-up', (req, res) => {
 })
 
 // ENDPOINT TO SING IN THE USER
-router.post('/sign-in', (req, res) => {
+router.post('/sign-in', cors(corsOptions), (req, res) => {
 
   const userEmail = req.body.email;
   const userPassword = req.body.password;
