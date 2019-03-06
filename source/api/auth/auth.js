@@ -7,7 +7,7 @@
 const jwt = require('jsonwebtoken');
 const express = require('express');
 const cors = require("cors")
-const corsOptions = { origin: 'https://scholarboard.herokuapp.com/'}
+const corsOptions = { origin: 'https://scholar-board.herokuapp.com/' }
 
 const router = express.Router();
 const User = require('../user/user.model');
@@ -18,14 +18,14 @@ router.post('/sign-up', cors(corsOptions), (req, res) => {
 
   const user = new User(req.body)
   user.save()
-    .then( (savedUser) => {
+    .then((savedUser) => {
       const token = jwt.sign({ _id: savedUser._id, email: savedUser.email, username: savedUser.username }, process.env.JWT_SECRET, {
         expiresIn: "60 days"
       });
 
-      res.sendStatus(200).cookie("scToken", token, {maxAge: 900000})
-    }).catch( (error) => {
-      response.status(400).json({ "error" : error})
+      res.sendStatus(200).cookie("scToken", token, { maxAge: 900000 })
+    }).catch((error) => {
+      response.status(400).json({ "error": error })
     })
 
 })
@@ -42,9 +42,9 @@ router.post('/sign-in', cors(corsOptions), (req, res) => {
       if (!user) {
         res.sendStatus(401)
       } else {
-                // send an authorized code if password does not match
+        // send an authorized code if password does not match
         user.comparePassword(userPassword, (err, isMatch) => {
-          if(!isMatch) {
+          if (!isMatch) {
             return res.sendStatus(401)
           } else {
 
@@ -55,7 +55,7 @@ router.post('/sign-in', cors(corsOptions), (req, res) => {
           }
         })
       }
-    }).catch( (error) => {
+    }).catch((error) => {
       return res.sendStatus(401)
     });
 });
