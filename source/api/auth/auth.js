@@ -7,14 +7,13 @@
 const jwt = require('jsonwebtoken');
 const express = require('express');
 const cors = require("cors")
-const corsOptions = { origin: 'https://scholar-board.herokuapp.com/' }
 
 const router = express.Router();
 const User = require('../user/user.model');
 
 
 // ENDPOINT TO SIGN UP THE USER
-router.post('/sign-up', cors(corsOptions), (req, res) => {
+router.post('/sign-up', cors(), (req, res) => {
 
   const user = new User(req.body)
   user.save()
@@ -23,7 +22,9 @@ router.post('/sign-up', cors(corsOptions), (req, res) => {
         expiresIn: "60 days"
       });
 
-      res.sendStatus(200).cookie("scToken", token, { maxAge: 900000 }).redirect("/dashboard")
+      res.cookie("scToken", token, { maxAge: 900000 })
+      res.status(200).send(savedUser)
+      
     }).catch((error) => {
       response.status(400).json({ "error": error })
     })
@@ -31,7 +32,7 @@ router.post('/sign-up', cors(corsOptions), (req, res) => {
 })
 
 // ENDPOINT TO SING IN THE USER
-router.post('/sign-in', cors(corsOptions), (req, res) => {
+router.post('/sign-in', cors(), (req, res) => {
 
   const userEmail = req.body.email;
   const userPassword = req.body.password;
@@ -51,7 +52,7 @@ router.post('/sign-in', cors(corsOptions), (req, res) => {
             // create token and send it as cookie          
             const token = jwt.sign({ _id: user._id, email: user.email, username: user.username }, process.env.JWT_SECRET, { expiresIn: '60 days' })
             res.cookie('scToken', token, { maxAge: 900000 })
-            return res.sendStatus(200)
+            res.status(200).send(user)
           }
         })
       }
