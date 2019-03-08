@@ -11,7 +11,7 @@ async function MatchScholarship(req, res) {
   const currentUser = await User.findById(req.user._id)
   console.log(currentUser);
   
-  const scholarships = await Scholarship.find({ gpa: { $lte: currentUser.gpa }} )
+  const scholarships = await Scholarship.find({})
     // $or:
     //   [ 
     //     // ALL PAIRS
