@@ -8,7 +8,7 @@ const User = require('../user/user.model');
 // RETURNS ALL MATCHING SCHOLARSHIPS ACCORDING TO USER DATA
 async function MatchScholarship(req, res) {
 
-  // const currentUser = req.user;
+  const currentUser = req.user;
   // const scholarships = await Scholarship.find({ 
   //   $or:
   //     [ 
@@ -60,7 +60,7 @@ async function MatchScholarship(req, res) {
 
   // const user = await User.findOne({ email: currentUser.email });
   // res.send({ scholarships, user });
-  res.send("hi")
+  res.send(currentUser.gpa)
 }
 
 // GET USER PROFILE
