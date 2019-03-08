@@ -23,7 +23,7 @@ router.post('/sign-up', cors(corsOptions), (req, res) => {
         expiresIn: "60 days"
       });
 
-      res.sendStatus(200).cookie("scToken", token, { maxAge: 900000 })
+      res.sendStatus(200).cookie("scToken", token, { maxAge: 900000 }).redirect("/dashboard")
     }).catch((error) => {
       response.status(400).json({ "error": error })
     })
