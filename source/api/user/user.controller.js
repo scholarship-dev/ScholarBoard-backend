@@ -9,53 +9,55 @@ const User = require('../user/user.model');
 async function MatchScholarship(req, res) {
 
   const currentUser = await User.findById(req.user._id)
-  const scholarships = await Scholarship.find({ 
-    $or:
-      [ 
-        // ALL PAIRS
-        { $and: 
-         [ { gpa: { $lte: currentUser.gpa } },
-           { ethnicity: currentUser.ethnicity } ] },
-        { $and: 
-          [ { gpa: { $lte: currentUser.gpa } },
-            { educationLevel: currentUser.educationLevel } ] },
-        { $and: 
-          [ { gpa: { $lte: currentUser.gpa } },
-            { grade: currentUser.grade } ] },
-        { $and: 
-          [ { ethnicity: currentUser.ethnicity },
-            { educationLevel: currentUser.educationLevel } ] },
-        { $and: 
-          [ { ethnicity: currentUser.ethnicity },
-            { grade: currentUser.grade } ] },
-        { $and: 
-          [ { educationLevel: currentUser.educationLevel },
-            { grade: currentUser.grade } ] },
-        // ALL TRIPLETS
-        { $and: 
-          [ { gpa: { $lte: currentUser.gpa } },
-            { ethnicity: currentUser.ethnicity },
-            { educationLevel: currentUser.educationLevel } ] },
-        { $and: 
-          [ { gpa: { $lte: currentUser.gpa } },
-            { ethnicity: currentUser.ethnicity },
-            { grade: currentUser.grade } ] },
-        { $and: 
-          [ { gpa: { $lte: currentUser.gpa } },
-            { educationLevel: currentUser.educationLevel },
-            { grade: currentUser.grade } ] },
-        { $and: 
-          [ { ethnicity: currentUser.ethnicity },
-            { educationLevel: currentUser.educationLevel },
-            { grade: currentUser.grade } ] },
-        // ALL FOUR
-        { $and: 
-          [ { gpa: { $lte: currentUser.gpa } },
-            { ethnicity: currentUser.ethnicity },
-            { educationLevel: currentUser.educationLevel },
-            { grade: currentUser.grade } ] },
-      ] 
-  })
+  console.log(currentUser);
+  
+  const scholarships = await Scholarship.find({ gpa: { $lte: currentUser.gpa }} )
+    // $or:
+    //   [ 
+    //     // ALL PAIRS
+    //     { $and: 
+    //      [ { gpa: { $lte: currentUser.gpa } },
+    //        { ethnicity: currentUser.ethnicity } ] },
+    //     { $and: 
+    //       [ { gpa: { $lte: currentUser.gpa } },
+    //         { educationLevel: currentUser.educationLevel } ] },
+    //     { $and: 
+    //       [ { gpa: { $lte: currentUser.gpa } },
+    //         { grade: currentUser.grade } ] },
+    //     { $and: 
+    //       [ { ethnicity: currentUser.ethnicity },
+    //         { educationLevel: currentUser.educationLevel } ] },
+    //     { $and: 
+    //       [ { ethnicity: currentUser.ethnicity },
+    //         { grade: currentUser.grade } ] },
+    //     { $and: 
+    //       [ { educationLevel: currentUser.educationLevel },
+    //         { grade: currentUser.grade } ] },
+    //     // ALL TRIPLETS
+    //     { $and: 
+    //       [ { gpa: { $lte: currentUser.gpa } },
+    //         { ethnicity: currentUser.ethnicity },
+    //         { educationLevel: currentUser.educationLevel } ] },
+    //     { $and: 
+    //       [ { gpa: { $lte: currentUser.gpa } },
+    //         { ethnicity: currentUser.ethnicity },
+    //         { grade: currentUser.grade } ] },
+    //     { $and: 
+    //       [ { gpa: { $lte: currentUser.gpa } },
+    //         { educationLevel: currentUser.educationLevel },
+    //         { grade: currentUser.grade } ] },
+    //     { $and: 
+    //       [ { ethnicity: currentUser.ethnicity },
+    //         { educationLevel: currentUser.educationLevel },
+    //         { grade: currentUser.grade } ] },
+    //     // ALL FOUR
+    //     { $and: 
+    //       [ { gpa: { $lte: currentUser.gpa } },
+    //         { ethnicity: currentUser.ethnicity },
+    //         { educationLevel: currentUser.educationLevel },
+    //         { grade: currentUser.grade } ] },
+    //   ] 
+
 
   res.send({ scholarships, currentUser });
 }
