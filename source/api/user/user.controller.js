@@ -12,6 +12,7 @@ async function MatchScholarship(req, res) {
   console.log(currentUser);
   
   const scholarships = await Scholarship.find({})
+
     // $or:
     //   [ 
     //     // ALL PAIRS

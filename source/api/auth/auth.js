@@ -26,9 +26,9 @@ router.post('/sign-up', (req, res) => {
       res.status(200).send(savedUser)
       
     }).catch((error) => {
-      response.status(400).json({ "error": error })
+      console.error(error);
+      res.status(400).json({ "error": error })
     })
-
 })
 
 // ENDPOINT TO SING IN THE USER

@@ -3,17 +3,15 @@
 //
 
 const express = require('express');
-const cors = require("cors")
-const corsOptions = { origin: 'https://scholarboard.herokuapp.com/'}
 const controller = require('./user.controller');
 const parcel = require('../../middleware/asyncHandler');
 
 const router = express.Router();
 
 //  GET: ALL MATCHING SCHOLARSHIPS
-router.get('/dashboard', cors(corsOptions), parcel(controller.MatchScholarship));
+router.get('/dashboard', parcel(controller.MatchScholarship));
 
 // GET: USER PROFILE
-router.get('/profile/:firstname', cors(corsOptions), parcel(controller.GetProfile)); 
+router.get('/profile/:firstname', parcel(controller.GetProfile)); 
 
 module.exports = router;
