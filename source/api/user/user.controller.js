@@ -64,9 +64,10 @@ async function MatchScholarship(req, res) {
 
 // GET USER PROFILE
 async function GetProfile(req, res) {
-  const { email } = req.params;
-  const user = await User.findOne({ email });
-  res.send(user);
+  const firstname = req.params.firstname;
+  
+  const user = await User.findOne({ firstname });
+  // res.send(user);
 }
 
 module.exports = {

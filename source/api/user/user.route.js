@@ -14,6 +14,6 @@ const router = express.Router();
 router.get('/dashboard', cors(corsOptions), parcel(controller.MatchScholarship));
 
 // GET: USER PROFILE
-router.get('/profile/:email', cors(corsOptions), parcel(controller.GetProfile)); 
+router.get('/profile/:firstname', cors(corsOptions), parcel(controller.GetProfile)); 
 
 module.exports = router;
