@@ -23,6 +23,7 @@
   "homepage": "https://github.com/scholarship-dev/backend#readme",
   "dependencies": {
     "apollo-server": "^2.9.6",
+    "apollo-server-koa": "^2.9.6",
     "bcryptjs": "^2.4.3",
     "cheerio": "^1.0.0-rc.2",
     "cors": "^2.8.5",

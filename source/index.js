@@ -1,22 +1,12 @@
-const koa = require("koa");
-const koaRouter = require("koa-router");
-const koaBody = require("koa-body");
-const { graphqlKoa } = require("apollo-server-koa");
-const typeDefs = require("./graphql/schemas/index");
+const Koa = require("koa");
+const { ApolloServer } = require("apollo-server-koa");
+const { typeDefs, resolvers } = require("./graphql/schemas/index");
 
-const app = new koa();
-const router = new koaRouter();
+const server = new ApolloServer({ typeDefs, resolvers });
 
-app.use(koaBody());
+const app = new Koa();
+server.applyMiddleware({ app });
 
-router.post("/graphql", graphqlKoa({ schema: typeDefs }));
-router.get("/graphql", graphqlKoa({ schema: typeDefs }));
-
-const PORT = process.env.PORT || 4001;
-
-app.use(router.routes());
-app.use(router.allowedMethods());
-
-app.listen(PORT, () => {
-  console.log(`App listening on ${PORT}`);
-});
+app.listen({ port: 4000 }, () =>
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+);

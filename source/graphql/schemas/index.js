@@ -34,7 +34,13 @@ const typeDefs = gql`
   }
 `;
 
-module.exports = typeDefs;
+const resolvers = {
+  Query: {
+    hello: () => `Hello World!`
+  }
+};
+
+module.exports = { resolvers, typeDefs };
 
 /*
 const UserType = new GraphQLObjectType({
