@@ -1,27 +1,15 @@
-const mysql = require("mysql");
-
-const db = mysql.createConnection({
-  host: process.env.MYSQL_HOST || "127.0.0.1",
-  user: process.env.USER || "root",
-  password: process.env.PASSWORD || "test",
-  port: process.env.PORT || "8080",
-  database: process.env.DB || "Scholarboard"
-});
+const mongoose = require("mongoose");
 
 function connectToDB() {
-  db.connect(err => {
-    if (err) {
-      console.error(`Error Connection: ${err.message}`);
-      return;
-    }
-    const sql = `CREATE TABLE users (name VARCHAR(255), address VARCHAR(255)`;
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log(`Table created`);
+  try {
+    mongoose.connect("mongodb://localhost:27017/Scholarboard", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
     });
-    console.log(`Connected to ${db.host}`);
-    return;
-  });
+    console.log(`Connected to the DB`);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 connectToDB();

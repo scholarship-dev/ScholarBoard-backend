@@ -1,8 +1,9 @@
 const Koa = require("koa");
 const session = require("koa-session");
 const { ApolloServer } = require("apollo-server-koa");
-const schema = require("./graphql/schemas/index");
+const schema = require("./graphql/index");
 const app = new Koa();
+require("./db");
 
 //Add redis store https://github.com/koajs/koa-redis
 const sessConfig = {

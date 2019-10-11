@@ -1,0 +1,52 @@
+const { gql } = require("apollo-server");
+
+const typeDefs = gql`
+
+  type Query {
+    test: String
+    user(id: ID!): User!
+  }
+
+  type Mutation {
+    createUser(name: String!, email: String!, password: String): AuthResponse!
+    loginUser(email: String!, password: String!): AuthResponse!
+  }
+
+  type Subscription {
+    # TODO: Add subscriptions
+    newUser: User!
+  }
+
+  type AuthResponse {
+    SESID: String!
+    user: User!
+  }
+
+  # Lookup custom scalar types
+  type Scholarship {
+    id: ID!
+    name: String
+    funding: Int
+    contactInfo: Int
+    description: String
+    ethnicity: String
+    educationLevel: String
+    grade: String
+    gpa: String
+  }
+
+  # Lookup custom scalar types
+  type User {
+    id: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+    gpa: String!
+    ethnicity: String!
+    educationLevel: String!
+    email: String!
+    scholarships: [Scholarship!]!
+  }
+`;
+
+module.exports = typeDefs;
