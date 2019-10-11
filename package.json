@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node source/index.js"
+    "start": "node source/index.js",
+    "start.dev": "nodemon source/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,8 @@
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.8",
     "joi": "^14.3.1",
     "moment": "^2.24.0",
     "mongoose": "^5.4.10",
