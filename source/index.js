@@ -1,22 +1,14 @@
-const Koa = require("koa");
-const session = require("koa-session");
-const { ApolloServer } = require("apollo-server-koa");
-const schema = require("./graphql/index");
-const app = new Koa();
+require("dotenv").config({ path: __dirname + "/.env" });
 require("./db");
+const express = require("express");
+const graphqlHTTP = require("express-graphql");
 
-//Add redis store https://github.com/koajs/koa-redis
-const sessConfig = {
-  key: "SCHOOL",
-  maxAge: 7.884e9
-};
+const app = express();
 
-app.use(session(sessConfig, app));
+app.use("/graphql", graphqlHTTP({}));
 
-const server = new ApolloServer({ schema });
+const PORT = process.env.PORT || 4000;
 
-server.applyMiddleware({ app });
-
-app.listen({ port: 4000 }, () =>
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-);
+app.listen(4000, () => {
+  console.log(`Server listening for request on port ${PORT}`);
+});
