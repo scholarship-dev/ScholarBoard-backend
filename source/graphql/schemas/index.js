@@ -1,11 +1,30 @@
 const { gql } = require("apollo-server");
+const { makeExecutableSchema } = require("graphql-tools");
 
 const typeDefs = gql`
+  # Root types
+
+  # TODO: Figure out the main scholarship query
   type Query {
+    #Types of queries allowed on our API
     test: String
-    scholarships: [Scholarship]!
-    scholarship(id: ID!): Scholarship
-    me: User
+    user(id: ID!): User!
+  }
+
+  type Mutation {
+    # TODO: Mutations allowed on our API
+    createUser(name: String!, email: String!, password: String): AuthResponse!
+    loginUser(email: String!, password: String!): AuthResponse!
+  }
+
+  type Subscription {
+    # TODO: Add subscriptions
+    newUser: User!
+  }
+
+  type AuthResponse {
+    SESID: String!
+    user: User!
   }
 
   # Lookup custom scalar types
@@ -23,25 +42,43 @@ const typeDefs = gql`
 
   # Lookup custom scalar types
   type User {
-    id: ID!
-    firstName: String
-    lastName: String
-    password: String
-    gpa: String
-    ethnicity: String
-    educationLevel: String
-    grade: String
+    id: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+    gpa: String!
+    ethnicity: String!
+    educationLevel: String!
     email: String!
+    appliedFor: [Scholarship!]!
   }
 `;
 
+let user = {
+  id: "12",
+  firstName: "William",
+  lastName: "Bogans",
+  password: "test1234",
+  gpa: "2.8",
+  ethnicity: "Black",
+  educationLevel: "Highschool",
+  grade: "11",
+  appliedFor: []
+};
+
 const resolvers = {
   Query: {
-    test: () => `The test worked, Graphql is setup properly. NOW GET TO WORK`
+    test: () => `The test worked, Graphql is setup properly. NOW GET TO WORK`,
+    user: (root, args, context, info) => user
   }
 };
 
-module.exports = { resolvers, typeDefs };
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+});
+
+module.exports = schema;
 
 /*
 const UserType = new GraphQLObjectType({
@@ -76,37 +113,6 @@ const ScholarshipType = new GraphQLObjectType({
   })
 });
 
-/*Is this the same?
-const ScholarshipSchema = new Grap({
-  name: { type: String, required: true },
-  deadline: { type: Date, required: false },
-  funding: { type: String, required: false },
-  contactInfo: { type: String, required: false },
-  description: { type: String, required: false },
-  ethnicity: { type: String, required: false },
-  educationLevel: [{ type: String, required: false }],
-  grade: { type: String, required: false },
-  gpa: { type: String, required: false }
-});
-*/
-
-/*
-const UserSchema = new Schema({
-  firstname: { type: String, required: false, trim: true },
-  lastname: { type: String, required: false, trim: true },
-  email: {
-    type: String,
-    required: true,
-    trim: true,
-    match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
-  },
-  password: { type: String, select: true, trim: true },
-  gpa: { type: Number, required: true, trim: true },
-  ethnicity: { type: String, required: true, trim: true },
-  educationLevel: { type: String, required: true, trim: true },
-  grade: { type: String, required: true, trim: true }
-});
-*/
 /*
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
