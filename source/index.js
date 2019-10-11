@@ -1,9 +1,17 @@
-const express = require("express");
-const graphqlHTTP = require("express-graphql");
-const app = express();
+const koa = require("koa");
+const koaRouter = require("koa-router");
+const koaBody = require("koa-body");
+const { graphqlKoa } = require("apollo-server-koa");
+const typeDefs = require("./graphql/schemas/index");
 
-const PORT = process.env.PORT || 4001;
+const app = new Koa();
+const router = new koaRouter();
+
+app.use(koaBody());
+
+router.get("/graphql", graphqlKoa({ schema: typeDefs }));
+router.get("/graphql", graphqlKoa({ schema: typeDefs }));
 
 app.listen(PORT, () => {
-  console.log(`Now listening on port 4000`);
+  console.log(`App listening on ${PORT}`);
 });
