@@ -8,7 +8,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createUser(name: String!, email: String!, password: String): AuthResponse!
+    createUser: User!
+    # (name: String!, email: String!, password: String): AuthResponse!
     loginUser(email: String!, password: String!): AuthResponse!
   }
 
@@ -39,13 +40,13 @@ const typeDefs = gql`
   type User {
     id: String!
     firstName: String!
-    lastName: String!
-    password: String!
-    gpa: String!
-    ethnicity: String!
-    educationLevel: String!
-    email: String!
-    scholarships: [Scholarship!]!
+    # lastName: String!
+    # password: String!
+    # gpa: Int!
+    # ethnicity: String!
+    # educationLevel: String!
+    # email: String!
+    # scholarships: [Scholarship!]!
   }
 `;
 
