@@ -1,10 +1,20 @@
 const Koa = require("koa");
+const session = require("koa-session");
 const { ApolloServer } = require("apollo-server-koa");
 const { typeDefs, resolvers } = require("./graphql/schemas/index");
+const app = new Koa();
+
+app.keys = ["secret?"];
+
+const sessConfig = {
+  key: "TEST",
+  maxAge: 7.884e9
+};
+
+app.use(session(sessConfig, app));
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
-const app = new Koa();
 server.applyMiddleware({ app });
 
 app.listen({ port: 4000 }, () =>

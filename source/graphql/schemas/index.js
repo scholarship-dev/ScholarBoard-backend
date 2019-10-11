@@ -2,6 +2,7 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   type Query {
+    test: String
     scholarships: [Scholarship]!
     scholarship(id: ID!): Scholarship
     me: User
@@ -36,7 +37,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    hello: () => `Hello World!`
+    test: () => `The test worked, Graphql is setup properly. NOW GET TO WORK`
   }
 };
 
