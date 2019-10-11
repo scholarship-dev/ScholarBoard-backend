@@ -4,10 +4,9 @@ const { ApolloServer } = require("apollo-server-koa");
 const { typeDefs, resolvers } = require("./graphql/schemas/index");
 const app = new Koa();
 
-app.keys = ["secret?"];
-
+//Add redis store https://github.com/koajs/koa-redis
 const sessConfig = {
-  key: "TEST",
+  key: "SCHOOL",
   maxAge: 7.884e9
 };
 

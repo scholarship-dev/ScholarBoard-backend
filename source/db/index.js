@@ -1,17 +1,27 @@
 const mysql = require("mysql");
 
-const connection = mysql.createConnection({
+const db = mysql.createConnection({
   host: process.env.MYSQL_HOST || "127.0.0.1",
-  user: process.env.USER || "Me",
+  user: process.env.USER || "root",
   password: process.env.PASSWORD || "test",
-  database: process.env.DATABASE || "Scholarboard",
-  port: process.env.PORT || "8080"
+  port: process.env.PORT || "8080",
+  database: process.env.DB || "Scholarboard"
 });
 
-connection.connect(err => {
-  if (err) {
-    console.error("error connecting: " + err.stack);
+function connectToDB() {
+  db.connect(err => {
+    if (err) {
+      console.error(`Error Connection: ${err.message}`);
+      return;
+    }
+    const sql = `CREATE TABLE users (name VARCHAR(255), address VARCHAR(255)`;
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log(`Table created`);
+    });
+    console.log(`Connected to ${db.host}`);
     return;
-  }
-  console.log(`connected as id ${connection.threadId}`);
-});
+  });
+}
+
+connectToDB();
