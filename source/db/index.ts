@@ -1,10 +1,11 @@
-const mongoose = require("mongoose");
+import { connect } from "mongoose";
 
 function connectToDB() {
-  console.log(process.env.DB_USER);
+  const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds233268.mlab.com:33268/scholarboard`;
+  
   try {
-    mongoose.connect(
-      `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds233268.mlab.com:33268/scholarboard`,
+    connect(
+      uri,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true

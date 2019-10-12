@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-
-const { Schema, model } = mongoose;
+import { Schema, model } from "mongoose";
 
 const ScholarshipSchema = new Schema({
   name: { type: String, required: true },
@@ -16,4 +14,4 @@ const ScholarshipSchema = new Schema({
 
 const Scholarship = model("Scholarship", ScholarshipSchema);
 
-module.exports = Scholarship;
+export default Scholarship

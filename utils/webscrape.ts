@@ -7,29 +7,31 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-names */
 
-require('dotenv').config()
-const Nightmare = require('nightmare');
-const nightmare = Nightmare({ show: true });
-const cheerio = require('cheerio');
-const Scholarship = require('../source/api/scholarship/scholarship.model');
+import { config } from 'dotenv'
+import Nightmare from 'nightmare'
+import cheerio from 'cheerio'
+import Scholarship from '../source/models/scholarship.model'
 require('../source/database/scholarboard-db');
 
 // WEBSCRAPE HELPER FUNCTIONS
-const helper = require('../source/util/tokenize');
+import * as helper from './tokenize';
 
-let urls = [
+const nightmare = new Nightmare({ show: true });
+config()
+
+const urls = [
   'https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/accounting/aauw-return-to-learning-scholarships'
 ];
 
-const nextLink = () => {
-  const theURL = urls.pop();
+function nextLink () {
+  const theURL = urls.pop()!;
   // scrape the web
   nightmare
     .goto(theURL)
     .evaluate(() => {
       return document.body.innerHTML;
     })
-    .then((result) => {
+    .then((result: string) => {
       // LOADING HTML
       const $ = cheerio.load(result);
 

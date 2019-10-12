@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const { Schema, model } = mongoose;
+import { Schema, model } from "mongoose";
 
 // Add validation
 const UserSchema = new Schema({
@@ -19,4 +18,5 @@ const UserSchema = new Schema({
 });
 
 const User = model("User", UserSchema);
-module.exports = User;
+
+export default User
