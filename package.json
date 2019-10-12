@@ -24,6 +24,7 @@
   "homepage": "https://github.com/scholarship-dev/backend#readme",
   "dependencies": {
     "apollo-server-koa": "^2.9.6",
+    "bcrypt": "^3.0.6",
     "dotenv": "^8.1.0",
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.5",
@@ -31,19 +32,28 @@
     "koa-session": "^5.12.3",
     "moment": "^2.24.0",
     "mongoose": "^5.7.4",
-    "nightmare": "^3.0.2"
+    "mongoose-unique-validator": "^2.0.3",
+    "nightmare": "^3.0.2",
+    "validator": "^11.1.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.8.1",
+    "@graphql-codegen/typescript": "1.8.1",
+    "@graphql-codegen/typescript-resolvers": "1.8.1",
+    "@types/bcrypt": "^3.0.0",
     "@types/cheerio": "^0.22.13",
     "@types/dotenv": "^6.1.1",
     "@types/koa-session": "^5.10.1",
     "@types/mongoose": "^5.5.20",
     "@types/nightmare": "^2.10.4",
+    "@types/validator": "^10.11.3",
+    "@typescript-eslint/parser": "^2.3.3",
+    "eslint": "^6.5.1",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2",
     "ts-node-dev": "^1.0.0-pre.43",
-    "typescript": "^3.6.4",
-    "@graphql-codegen/typescript": "1.8.1",
-    "@graphql-codegen/typescript-resolvers": "1.8.1"
+    "typescript": "^3.6.4"
   }
 }
