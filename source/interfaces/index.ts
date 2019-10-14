@@ -8,4 +8,5 @@ export interface IUserDocument extends Document {
   gpa: number;
   ethnicity: string;
   educationLevel: string;
+  findLoginInfo: (email: string, password: string) => this;
 }

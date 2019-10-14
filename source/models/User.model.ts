@@ -34,11 +34,11 @@ UserSchema.pre<IUserDocument>("save", async function hash(next) {
   next();
 });
 
-UserSchema.statics.findLoginInfo = async function(email, password, res) {
+UserSchema.statics.findLoginInfo = async function({ email, password }) {
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(404).send({ message: "Your information is not correct" });
+    return { message: "Your information is not correct" };
   }
 
   const isMatch = await bcrypt.compare(password, user.password);

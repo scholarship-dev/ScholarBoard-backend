@@ -1,3 +1,4 @@
+# Any change made run `yarn codegen`
 type Query {
   test: String
   user(id: ID!): User!
@@ -17,7 +18,7 @@ type Mutation {
     educationLevel: String!
   ): AuthResponse!
 
-  loginUser(email: String!, password: String!): User!
+  loginUser(email: String!, password: String!): AuthResponse!
 }
 
 # Auth Section

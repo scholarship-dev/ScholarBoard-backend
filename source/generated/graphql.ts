@@ -26,7 +26,7 @@ export type Error = {
 export type Mutation = {
    __typename?: 'Mutation',
   createUser: AuthResponse,
-  loginUser: User,
+  loginUser: AuthResponse,
 };
 
 
@@ -201,7 +201,7 @@ export type ErrorResolvers<ContextType = Context, ParentType extends ResolversPa
 
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createUser?: Resolver<ResolversTypes['AuthResponse'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'firstName' | 'lastName' | 'email' | 'password' | 'gpa' | 'ethnicity' | 'educationLevel'>>,
-  loginUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationLoginUserArgs, 'email' | 'password'>>,
+  loginUser?: Resolver<ResolversTypes['AuthResponse'], ParentType, ContextType, RequireFields<MutationLoginUserArgs, 'email' | 'password'>>,
 };
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
