@@ -30,7 +30,7 @@
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.0",
     "moment": "^2.24.0",
-    "mongoose": "^5.4.10",
+    "mongoose": "^5.7.5",
     "nightmare": "^3.0.1",
     "nodemon": "^1.18.10"
   },
